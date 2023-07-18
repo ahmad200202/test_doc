@@ -1,0 +1,54 @@
+{
+  "AddUserGroupPopupTitle":"Add User/Group",
+  "UserPermissions":"User Permissions",
+  "User":"User",
+  "Group":"Group",
+  "RemoveUserGroup":"Remove {1}",
+  "AreYouSureYouWantToRemove":"Are you sure you want to remove the following {1}?",
+  "DisableInheritancePopupTitle":"Disable Inheritance",
+  "DisableInheritance":{
+    "Convert":{
+      "Label":"Convert inherited permissions on this object into explicit permissions",
+      "Tooltip":"Permission for this level will be converted to explicit permissions. New users/groups will not inherit from parent."
+    },
+    "Remove":{
+      "Label":"Remove all inherited permissions from this object",
+      "Tooltip":"All permissions inherited from the parent level will be removed for this level. New users/groups will not inherit permissions from the parent."
+    }
+  },
+  "EnableInheritancePopupTitle":"Enable Inheritance",
+  "EnableInheritance":{
+    "Restore":"Inherit all permissions from parent and override any definition manually made at this level",
+    "Keep":"Inherit all permissions from parent but keep definitions manually made at this level"
+  },
+  "disable":"Disable",
+  "enable":"Enable",
+  "nameValidationInstruction" : "User and group names can contain all Unicode characters except for the following characters: Forward slash (/), Left square bracket ([), Right square bracket (]), Colon (:), Semicolon (;), Vertical bar (|), Equal sign (=), Plus sign (+), Asterisk (*), Question mark (?), Left angle bracket (<), Right angle bracket (>), Double quote (\")",
+  "samlNameValidationInstruction" : "User and group names can contain any Unicode character up to 255 characters",
+  "GetEffectivePermissions_Instructions_1": "Select or enter user.",
+  "GetEffectivePermissions_Instructions_2": "Not available for groups.",
+  "GetEffectivePermissions_Tooltip": "You can also enter the name of a user not listed here if the user is part of a group, in the following format:<BR> NetBIOS_name\\user (e.g.: DEV\\John) <BR> machine_name\\local_user (e.g.: re2008r2js1\\JohnMil1)",
+  "GetEffectivePermissions_Text": "Check",
+  "GetEffectivePermissions_User": "User:",
+
+  "GridColumns" :{
+    "UserGroup" : "User/Group",
+    "AllowPermissions" :"Allow Permissions"
+  },
+  "ActionBar" : {
+    "save" :  "Save",
+    "discard" :"Discard Changes",
+    "EnableInheritanceText_Dots": "Enable Inheritance...",
+    "DisableInheritanceText_Dots": "Disable Inheritance...",
+    "AddUserGroup_Text_Dots" : "Add...",
+    "RemoveGroup_Text_Dots" : "Remove...",
+    "Restore_Text" : "Restore Inheritance"
+  },
+  "SaveChangesPopup": {
+    "Header":"Save changes",
+    "Body":"Do you want to save user permissions changes?"
+  },
+  "DisabledDeleteBtnTooltip": "This option is only available for user/group that do not inherit permission from a parent",
+  "DisabledRestoreBtnTooltip": "This option in only available for user/group that inherit permission from a parent",
+  "EffectivePerms": "Effective Permissions"
+}

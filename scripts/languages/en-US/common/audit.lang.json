@@ -1,0 +1,9 @@
+{
+  "AuditTrialHeader":"Audit Trail",
+  "Generate":"Generate",
+  "GenerateCSVFile" : "Generate CSV File",
+  "TimeRange": "Time Range:",
+  "TimeRangeFrom": "From:",
+  "TimeRangeTo": "To:",
+  "UTCMessage": "The timestamp in the CSV file shows the coordinated universal time (UTC)."
+}

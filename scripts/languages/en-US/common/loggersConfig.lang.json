@@ -1,0 +1,29 @@
+{
+    "StoreTraceOnError" : "Store trace/verbose logging in memory, but if an error occurs write to the logs",
+    "StoreTraceOnErrorMemory":  "Allocate memory up to (MB)",
+    "LogFileViewer": "Log File Viewer",
+    "TextLoading": "Loading...",
+    "LoggerSettings": "Component Logging Level",
+    "SetLogLevelInstruction": "Set the logging level per component or set a global logging level for all components.",
+    "LoggerSeverityPrefix": "LoggerSeverity_",
+    "LoggerSeverity_DEFAULT": "Default",
+    "LoggerSeverity_ERROR": "Errors",
+    "LoggerSeverity_WARNING": "Warnings",
+    "LoggerSeverity_INFO": "Info",
+    "LoggerSeverity_DEBUG": "Trace",
+    "LoggerSeverity_DETAILED_DEBUG": "Verbose",
+    "GridColHeader_Logger": "Logger",
+    "GridColHeader_LoggingLevel": "Logging Level",
+    "DetailsDebug_InfoHeader": "Verbose",
+    "DetailsDebug_InfoBody": "When Verbose is set, the server records a large amount of data which may slow down system performance.",
+    "DetailsAllDebug_InfoBody": "All logging levels are set to Verbose. When Verbose is set, the server records a large amount of data which may slow down system performance.",
+
+    "NoRelevantItemsWereFound":"No relevant items were found.",
+    "CouldNotFoundRelevantLogFiles":"No items to show.",
+
+    "Low": "Lowest",
+    "High": "Highest",
+    "EmptyString": "&nbsp",
+    "LogRollSuccess": "Log roll success",
+    "LogRollError": "Log roll error"
+}

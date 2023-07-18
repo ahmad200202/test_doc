@@ -1,0 +1,82 @@
+{
+    "TextLoading":"Loading...",
+
+    "RegisterLicense_label":"Register License",
+    "RegisterLicenseDotDotDot":"Register License...",
+    "LicenseDots":"License...",
+
+    "LoadingLicense":"Loading license...",
+
+    "ViewLicense":"View License",
+
+    "TopNotification_Empty": "No license registered.",
+    "TopNotification_Invalid": "License is invalid",
+    "TopNotification_Expired":"License expired.",
+    "TopNotification_ExpireToday":"License will expire today.",
+    "TopNotification_ExpireInFewDays":"License will expire in {1} days.",
+    "TopNotification_RegisterALicense":"Register a license",
+    "Alert":{
+        "LicenseAlerts": "License Alerts",
+        "NoRegistered": "No license registered.",
+        "Invalid": "license is invalid.",
+        "Expired":"license has expired.",
+        "ExpireToday":"license will expire today.",
+        "ExpireInFewDays":"license will expire in {1} days.",
+        "ExpireInOneDay":"license will expire in 1 day.",
+        "Register_A_License":"Register a license",
+        "BAD_LICENSE_JSON": "license file format is corrupt.",
+        "WRONG_PRODUCT": "license is for a different module or product.",
+        "SIGNATURE_NO_MATCH": "license signature is invalid.",
+        "LICENSE_BAD_HOST": "the host name in the license does not match the Qlik product machine name."
+    },
+    "RegisterPopup_TopTitle": "Register License",
+    "RegisterPopup_TopTitleForServer": "Register License for server: '{1}'",
+    "RegisterPopup_TopTitleForManyServers": "Register License for {1} servers",
+    "RegisterPopup_TopTitleForModule": "Register {1} License",
+    "RegisterPopup_LoadFile": "Load the license file or paste the license text below.",
+    "RegisterPopup_CopyPaste": "Copy & paste license to screen",
+    "RegisterPopup_LoadFileBtn": "Load...",
+    "RegisterPopup_contentHeader": "License text:",
+    "RegisterPopup_contentFooter": "To register new or modified license, click 'Register License'.",
+    "RegisterPopup_ActionButtonText": "Register License",
+    "RegisterPopup_RegisteredSuccessfully": "The license was registered successfully",
+    "RegisterPopup_ErrorParsingFile": "Error parsing license file",
+
+    "RegisterPopup_RegisteredSuccessfully_withName": "{1} license was registered successfully",
+
+
+    "MailServerSettings": "Mail Server Settings",
+    "MailServer": "Mail server:",
+    "MailServer_Port": "Port:",
+    "MailServer_UseSSL": "Use secure email (SMTPS):",
+    "MailServer_AnonymousLogin": "Anonymous login:",
+    "MailServer_UserName": "User name:",
+    "MailServer_Password": "Password:",
+    "MailServer_SenderEmailAddress": "Sender email address:",
+    "MailServer_SendTestMail": "Send Test Mail",
+
+
+    "SectionTitleLicenseExpired":"License Expired",
+    "LicenseHasExpired":"The {1}license has expired.",
+    "AnalyticsCollectedUtil":" Analytics data was collected until {1}.",
+    "ModuleLicenseHasExpired":"{1} license has expired.",
+    "RegisterLicenseNameInOrderToUseProduct":"to register your {1} license and begin using {2}.",
+    "AdminNeedsRegisterWithProductAndLicenseName":"An {1} Admin needs to register a {2} license before you can use the product.",
+    "ObtainLicenseContact":"To obtain a license, contact your Qlik Sales Representative.",
+    "ObtainLicenseContactWithMachineName":"To obtain a license, contact your Qlik Sales Representative with the relevant machine name:",
+    "SectionTitle":{
+        "LICENSE_EXPIRED":"License Expired",
+        "GENERAL_NOT_VALID":"Invalid License"
+    },
+    "SectionMainTextByState":{
+        "LICENSE_EXPIRED":"{1} license has expired.",
+        "GENERAL_NOT_VALID":"{1} license is not valid."
+    },
+    "InvalidMessages": {
+        "BAD_LICENSE_JSON": "Invalid License: The license file format is corrupt.",
+        "WRONG_PRODUCT": "Invalid License: The license is for a different module or product.",
+        "SIGNATURE_NO_MATCH": "Invalid License: The license signature is invalid.",
+        "LICENSE_BAD_HOST": "Invalid License: The host name in the license does not match the Enterprise Manager machine name.",
+        "LICENSE_EXPIRED": "Invalid License: License has expired."
+    }
+}
