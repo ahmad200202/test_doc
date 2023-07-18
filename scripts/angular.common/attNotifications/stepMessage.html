@@ -1,0 +1,34 @@
+<div class="stepMessage" ng-init="initEditMessageSection()">
+    <div class="messagesSectionUpper">
+        <form name="EditNotificationMessagesForm" form-validation model-to-validate="vm.uiData.messages"  validation-override="vm.uiData.messagesValidationOverride" class="editNotificationMessages" ng-click="onClickSomewhere($event)">
+            <div class="emailSubjectRow row" ng-if="vm.uiData.deliveryAction.isEmail" >
+                <label class="wizMessagesLabel" i18n="common.notifications.EmailSubjectLabel"></label>
+                <input id="inputEmailSubject" ng-click="onClickInputMessage($event)" style="margin-top: 2px; width: 100%; margin-left: 0px;" type="text"  select-on-load
+                       ng-model="vm.uiData.messages.emailSubject" ng-change="onChangeMessage($event)" errLabel="Email Subject"/>
+            </div>
+            <div class="emailBodyMessageRow row" ng-if="vm.uiData.deliveryAction.isEmail || vm.uiData.deliveryAction.isEventLog">
+                <label ng-if="vm.uiData.deliveryAction.isEmail === false && vm.uiData.deliveryAction.isEventLog" class="wizMessagesLabel" i18n="common.notifications.WindowsEventLogMessageLabel"></label>
+                <label ng-if="vm.uiData.deliveryAction.isEmail && vm.uiData.deliveryAction.isEventLog === false" class="wizMessagesLabel" i18n="common.notifications.EmailBodyLabel"></label>
+                <label ng-if="vm.uiData.deliveryAction.isEmail && vm.uiData.deliveryAction.isEventLog" class="wizMessagesLabel" i18n="common.notifications.EmailAndWindowsEventLogMessageLabel"></label>
+                <textarea id="txtAreaGeneralMessage" ng-model="vm.uiData.messages.emailBody" ng-change="onChangeMessage($event)" ng-click="onClickInputMessage($event)" errLabel="Email Body"></textarea>
+            </div>
+        </form>
+
+        <div class="addVariableBtnWrap" ng-if="vm.uiData.deliveryAction.isEmail || vm.uiData.deliveryAction.isEventLog">
+            <span class="addVariableBtn att-glyph icon-gl-Expand_left" ng-class="{'disabled' :  selectedVariable == ''}" ng-click="onAddMessageVariable()"></span>
+        </div>
+
+        <div class="rightSectionVariablesWrap" ng-if="vm.uiData.deliveryAction.isEmail || vm.uiData.deliveryAction.isEventLog">
+            <div class="labelAndSearchWrap">
+                <label class="wizMessagesLabel">{{'common.notifications.Variables'|i18n}}:</label>
+                <att-search place-holder="Search" ng-model="vm.uiData.searchVariableTerm" style="width:100%"></att-search>
+            </div>
+            <ul class="messageVariablesList" ng-keypress="handleKeypress($event)">
+                <li ng-repeat="variableName in vm.uiData.variablesList | filter:vm.uiData.searchVariableTerm " ng-click="onVariableClick(variableName)" ng-dblclick="onVariableDblClick(variableName)" ng-class="{'selected': variableName == selectedVariable}" att-custom-tooltip strict-text="{{variableName}}">{{variableName}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="messagesSectionLower">
+        <att-button on-click="onClickRestorePredefineMessage()" ng-disabled="isDisabledRestoreMessage()" label="common.notifications.RestoreDefault" button-class="modal-attBtn" style="margin-top: 0;"></att-button>
+    </div>
+</div>

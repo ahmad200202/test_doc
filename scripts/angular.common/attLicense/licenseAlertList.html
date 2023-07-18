@@ -1,0 +1,11 @@
+<div class="licenseAlertListContent">
+    <div ng-repeat="(key,item) in vm.alertsDictionary" class="alertItem" licensename="{{key}}">
+        <span class="licenseAlertIcon-{{item.iconState}}"></span>
+        <span class="alertItemJoinedMessage">{{key}} {{item.licenseTypeText}} {{item.text}}</span>
+        <div class="alertItemBtnsWrap">
+            <a class="itemActionRegisterLicense clickableText" ng-if="item.canRegisterLicense" ng-click="vm.actions.actionRegisterLicense(key)" i18n="{{vm.actions.textRegisterLicense}}"></a>
+            <a class="itemaAtionOpenViewLicenseSettings clickableTextSecond" ng-if="item.canOpenLicenseSettings" ng-click="vm.actions.actionOpenViewLicenseSettings(key)" i18n="{{vm.actions.textOpenViewLicenseSettings}}"></a>
+            <a ng-if="item.canRegisterLicense && (item.actionHideText != '')" class="clickableTextSecond itemActionHideLicense" ng-click="vm.actions.hideActionClicked(key)" i18n="{{item.actionHideText}}"></a>
+        </div>
+    </div>
+</div>

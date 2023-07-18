@@ -1,0 +1,23 @@
+<div ng-controller="RegisterLicenseOverlayCtrl" id="RegisterLicenseCtrlWrap" class="H100W100">
+    <div id="RedOverlayTopCover" ng-if="licenseServiceData.overlayInfo.showOverlayTopRedBackground"></div>
+    <div class="H100W100">
+        <att-loader ng-if="licenseServiceData.overlayInfo.sections.one.show != true" class='registerLicenseOverlayLoader' loader-text="{{licenseServiceData.overlayInfo.loadingLicenseText}}" loader-type="ball-spin-fade-loader"></att-loader>
+        <div class="overlay-content" ng-if="licenseServiceData.overlayInfo.sections.one.show">
+            <div class="title">{{licenseServiceData.overlayInfo.title}}</div>
+            <div class="section" ng-if="licenseServiceData.overlayInfo.sections.one.show == true" >
+                <span>{{licenseServiceData.overlayInfo.sections.one.firstText}}</span>
+                <a class="clickableText" ng-if="licenseServiceData.overlayInfo.sections.one.btnLabel" data-ng-click="licenseServiceData.overlayInfo.sections.one.onClick()" id="ut__RegisterLicense">{{licenseServiceData.overlayInfo.sections.one.btnLabel}}</a>
+                <span>{{licenseServiceData.overlayInfo.sections.one.mainText}}</span>
+            </div>
+            <div class="section" ng-if="licenseServiceData.overlayInfo.sections.two.show == true">
+                <span>{{licenseServiceData.overlayInfo.sections.two.mainText}}</span>
+                <span id="MachineName" class='fqdnText' ng-if="licenseServiceData.overlayInfo.sections.two.showMachineName && licenseServiceData.systemInfo.full_machine_name != ''">{{licenseServiceData.systemInfo.full_machine_name}}</span>
+            </div>
+            <div class="section" ng-if="licenseServiceData.overlayInfo.sections.three.show == true">
+                <a class="clickableText" id="sections_three_firstBtn" ng-if="licenseServiceData.overlayInfo.sections.three.firstBtn.show" data-ng-click="licenseServiceData.overlayInfo.sections.three.firstBtn.action()" >{{licenseServiceData.overlayInfo.sections.three.firstBtn.label}}</a>
+                <a class="clickableTextSecond" id="sections_three_secondBtn" ng-if="licenseServiceData.overlayInfo.sections.three.secondBtn.show" data-ng-click="licenseServiceData.overlayInfo.sections.three.secondBtn.action()" >{{licenseServiceData.overlayInfo.sections.three.secondBtn.label}}</a>
+            </div>
+        </div>
+    </div>
+
+</div>

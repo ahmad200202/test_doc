@@ -1,0 +1,55 @@
+<div class="textViewerContainer">
+
+    <!--<div class="textViewerSearchBox" ng-style="setSearchBoxStyle()" render-if="(showSearchBox!=false)">-->
+    <div class="textViewerSearchBox" render-if="(showSearchBox!=false)">
+        <div class="searchInputContainer">
+            <att-text-input select-on-load ng-model="textSearchTerm" enter-close-modal="false" ng-keyup="onSearchTermKeyUp()"></att-text-input>
+            <div class="textSearchIconContainer">
+                <span ng-click="textSearchTerm.length > 0 && textSearchIconClicked()" class="textSearchIcon glyphicons" ng-class="{'glyphicons-search' : (textSearchTerm.length == 0), 'glyphicons-remove-2' : (textSearchTerm.length > 0)}"></span>
+            </div>
+        </div>
+
+        <div class="numOfHitsContainer">
+            <span class="numOfHits" >{{currentHitByPrevNext}}/{{hitsCounter}}</span>
+        </div>
+
+
+
+        <att-button type="glyph" glyph-class="bootstrapGlyphicon glyphicon-fast-backward" class="hitBtn" ng-disabled="isPrevHitDisabled()" on-click="stepToHitClicked('first')" ></att-button>
+        <att-button type="glyph" glyph-class="glyphicons glyphicons-left-arrow" class="hitBtn" ng-disabled="isPrevHitDisabled()" on-click="stepToHitClicked('previous')" ></att-button>
+        <att-button type="glyph" glyph-class="glyphicons glyphicons-right-arrow" class="hitBtn" ng-disabled="isNextHitDisabled()" on-click="stepToHitClicked('next')" ></att-button>
+        <att-button type="glyph" glyph-class="bootstrapGlyphicon glyphicon-fast-forward" class="hitBtn" ng-disabled="isNextHitDisabled()" on-click="stepToHitClicked('last')" ></att-button>
+
+        <!--<att-button style="border: 1px solid red;" type="glyph" glyph-class="bootstrapGlyphicon glyphicon-fast-forward" class="hitBtn" on-click="testBtn()" ></att-button>-->
+
+        <div ng-if="isFontEffectsEnabled">
+            <att-button type="glyph" glyph-class="glyphicons glyphicons-font" class="hitBtn font1" on-click="setFontSize(10)"></att-button>
+            <att-button type="glyph" glyph-class="glyphicons glyphicons-font" class="hitBtn font2" on-click="setFontSize(12)"></att-button>
+            <att-button type="glyph" glyph-class="glyphicons glyphicons-font" class="hitBtn font3" on-click="setFontSize(14)"></att-button>
+        </div>
+
+        <att-button type="glyph" style="float: right;" glyph-class="bootstrapGlyphicon glyphicon-download-alt"
+                    title="{{downloadLogFileTooltip}}" class="hitBtn textViewerDownloadFile" ng-if="isDownloadFileEnabled" ng-disabled="(textRecords.length == 0)"
+                    on-click="onDownloadLogFileFnc()" ></att-button>
+    </div>
+    <div class="content-erea">
+        <label ng-if="subTitle" i18n="{{subTitle}}"></label>
+        <div class="scrollArea">
+            <div class="textViewerContent unselectable">
+                <div class="tvRow"
+                     ng-repeat="textRow in filtered_records track by $index "
+                     att-custom-tooltip custom-tooltip-text="{{textRow}}"
+                     ng-style="{'font-size' : pFontSize + 'px'}"
+                     id="txtView{{$index}}"
+                     tabindex="{{20000 + $index}}"
+                     ng-keydown="handleOnKeyDown($event)"
+                     ng-click="textRecordClicked($event)"
+                     ng-dblclick="textRecordDblClicked($event)"
+                     ng-bind-html="textRow | markSearchTerm:textSearchTerm | markRowByCriteria: {highlightCriteria: highlightRowsCriteria, pFontSize: pFontSize} "
+                     ng-class="{ellipsisStyle:ellipsisTextOverflow, fontEffects: isFontEffectsEnabled}">
+                    {{textRow}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

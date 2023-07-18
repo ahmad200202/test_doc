@@ -1,0 +1,70 @@
+<form name="NewEditNotificationForm" form-validation="notification" model-to-validate="vm.notification"  validation-override="vm.uiData.notificationValidationOverride" class="form-horizontal newEditNotificationForm">
+    <span ng-init="initDeliveryAction()"></span>
+    <div class="form-row row notificationNameRow">
+        <div class="formWrapLabel">
+            <label for="Name" class="control-label nameControlLabel" i18n="common.notifications.NotificationName"></label>
+            <span ng-if="vm.uiData.isNew == true" class="bootstrapGlyphicon glyphicon-info-sign"
+                  att-custom-tooltip custom-tooltip-text="common.notifications.UniqueNotificationDisplayAllowMessage" style="cursor: pointer; color: #3D9BDF;top: -4px;"></span>
+        </div>
+        <div class="formWrapContent">
+            <div ng-if="vm.uiData.isNew == true">
+                <att-text-input id="Name" name="Name" autocomplete="off" errLabel="Name"
+                                ng-model="vm.notification.name"
+                                unique-prop="name"
+                                is-bound="false"
+                                unique-names-list="vm.existingNotifications"
+                                case-sensitive="false"
+                                class="form-control">
+                </att-text-input>
+            </div>
+            <div ng-if="vm.uiData.isNew != true">
+                <span>{{vm.notification.name}}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--use template: vm.uiData.stepEventsTemplateUrl-->
+    <div ng-if="vm.uiData.useStepEventsTemplateBool == true" ng-include="vm.uiData.stepEventsTemplateUrl" class="row"></div>
+
+    <!--use attNotificationsServiceData.notificationGroups -->
+    <div ng-if="vm.uiData.useStepEventsTemplateBool == false" class="row notificationGroupsWrap">
+        <div ng-if="vm.uiData.groupType == 'SERVER'" class="noteText">{{'common.notifications.NotificationsWillOnlyBeSentIfCorresponding' | i18n}}</div>
+
+        <div ng-repeat="(groupKey, groupData) in attNotificationsServiceData.notificationGroups" class="form-row row notificationGroupRow {{groupKey}}" grpkey="{{groupKey}}">
+            <div class="formWrapLabel">
+                <label class="eventGroupLabel" i18n="{{groupData.label}}"></label>
+            </div>
+            <div class="formWrapContent">
+                <div class="row eventItemWrap" ng-repeat="eventObject in groupData.events" eventkey="{{eventObject.eventKey}}">
+                    <att-radio-button ng-if="eventObject.tpl == null || eventObject.tpl == ''" class="eventTypeCheckBox" ng-model="vm.uiData.singleSelectedEventRadioBtn" value="eventObject.eventKey" ng-change="onChangeEventRadioButton($event, eventObject)" label="{{eventObject.label}}" disabled="eventObject.disable"></att-radio-button>
+                    <div ng-if="eventObject.tpl != null" id="rTpl{{eventObject.eventKey}}" ng-include src="eventObject.tpl" class="eventObjectWithTemplate" ng-class="{'disabled':eventObject.disable}"></div>
+                    <div ng-if="eventObject.tpl != null && eventObject.tpl == ''" id="rdWrapTpl{{eventObject.eventKey}}"  ng-include src="eventObject.tpl" ng-class="{'disabled':eventObject.disable}" style="float: left;"></div>
+                </div>
+            </div>
+            <div ng-if="groupData.warning != null &&  groupData.warning != ''" class="row groupWarning">
+                <div class="noteText" ng-if="groupData.isNote">{{(groupData.warning) | i18n}}</div>
+            </div>
+        </div>
+
+    </div>
+
+
+</form>
+
+<!--<div ng-if="attNotificationsServiceData.displayWithGroupMultiCheckBoxes === true">-->
+<!--<div ng-repeat="(groupKey, groupData) in attNotificationsServiceData.notificationGroups" class="form-row row notificationGroupRow {{groupKey}}" grpkey="{{groupKey}}">-->
+<!--<div class="formWrapLabel">-->
+<!--<att-radio-button input-id="rd_{{$index}}" ng-model="vm.uiData.notificationTypeRadioBtnGroup" value="groupKey" label="{{groupData.label}}" ng-change="changeGroupSelection()" group-name="notification_typeRB" disabled="groupData.disable"></att-radio-button>-->
+<!--</div>-->
+<!--<div class="formWrapContent">-->
+<!--<div class="row eventItemWrap" ng-repeat="eventObject in groupData.events" eventkey="{{eventObject.eventKey}}">-->
+<!--<att-checkbox ng-if="eventObject.tpl == null || eventObject.tpl == ''" class="eventTypeCheckBox" ng-model="vm.uiData.selectedEvents[eventObject.eventKey]" name="cb{{eventObject.eventKey}}" ng-change="onChangeCheckboxState($event, eventObject)" label="{{eventObject.label}}" disabled="eventObject.disable"></att-checkbox>-->
+<!--<div ng-if="eventObject.tpl != null" id="cbTpl{{eventObject.eventKey}}" ng-include src="eventObject.tpl" ng-class="{'disabled':eventObject.disable}"></div>-->
+<!--</div>-->
+<!--<div ng-if="groupData.warning != null &&  groupData.warning != ''" class="row groupWarning">-->
+<!--<span i18n="{{groupData.warning}}"></span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

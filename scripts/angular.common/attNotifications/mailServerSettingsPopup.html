@@ -1,0 +1,132 @@
+<div class="mailServerSettingsConfigurationFormWrap mainLeftRightPadding" ng-controller="mailServerPopupCtrl">
+    <!-- authorized-action="{{vm.tabsMeta.mailServerSettingsTab.method}}" policy="EnableDisable"-->
+    <form id="mailServerSettingsEl" name="MailServerSettingsForm" form-validation model-to-validate="vm.mailServerObject" validation-override="vm.validationOverrideMailServer">
+
+        <label class="sectionHeader" i18n="common.notifications.MailServerSettingsLabel"></label>
+
+        <div class="form-row row">
+            <div class="formWrapLabel">
+                <label for="mailServerInput">
+                    <span i18n="common.notifications.MailServerLabel"></span>:
+                </label>
+            </div>
+            <div class="formWrapContent">
+                <att-text-input input-id="mailServerInput" ng-model="vm.mailServerObject.host" enter-close-modal="false" errLabel="{{'common.notifications.MailServerLabel' | i18n}}"></att-text-input>
+            </div>
+        </div>
+
+        <div class="form-row row">
+            <div class="formWrapLabel">
+                <label for="portInput">
+                    <span i18n="common.base.Port"></span>:
+                </label>
+            </div>
+            <div class="formWrapContent portInputContainer">
+                <att-number-stepper id="portInput" number-data="vm.mailServerObject.port" min="0" max="65535"></att-number-stepper>
+            </div>
+        </div>
+
+        <div class="form-row row">
+            <div class="formWrapContent" style="margin-top: 2px;">
+                <att-checkbox id="useSSLInput" ng-model="vm.mailServerObject.use_ssl"
+                              ng-click="sslCheckboxClick()" label="server.mailSettingsUseSSL"></att-checkbox>
+            </div>
+        </div>
+        <div id="sslInputsWrap">
+            <div class="form-row row">
+                <div class="col-sm-5">
+                    <att-checkbox disabled="!vm.mailServerObject.use_ssl"
+                                  ng-model="vm.mailServerObject.ssl_verify_host"
+                                  label="server.mailSettingsSSLVerifyHost" input-id="SSLVerifyHost"
+                                  input-name="SSLVerifyHost"></att-checkbox>
+                </div>
+            </div>
+            <div class="form-row row">
+                <div class="col-sm-5">
+                    <att-checkbox disabled="!vm.mailServerObject.use_ssl"
+                                  ng-model="vm.mailServerObject.ssl_verify_peer"
+                                  label="server.mailSettingsSSLVerifyPeer" input-id="SSLVerifyPeer"
+                                  input-name="SSLVerifyPeer"></att-checkbox>
+                </div>
+            </div>
+            <div class="form-row row">
+                <label class="col-sm-12" i18n="server.mailSettingsWhenUseSSLNote"
+                       ng-style="{'color': !vm.mailServerObject.use_ssl ? '#acacac' : 'inherit'}"></label>
+            </div>
+        </div>
+
+        <div class="form-row row">
+            <div class="formWrapContent" style="margin-top: 2px;">
+                <att-checkbox id="AnonymousLoginInput" ng-change="onAnonymousLoginChanged()"
+                              ng-model="vm.mailServerObject.anonymous_login"
+                              label="server.mailSettingsAnonymousLogin"></att-checkbox>
+            </div>
+        </div>
+
+        <div class="form-row row">
+            <div class="formWrapLabel">
+                <label for="usernameInput">
+                    <span i18n="common.base.UserNameLabel"></span>:
+                </label>
+            </div>
+            <div class="formWrapContent">
+                <att-text-input input-id="usernameInput" ng-change="onUsernameChanged()" ng-model="vm.mailServerObject.username" enter-close-modal="false"
+                                ng-disabled="vm.mailServerObject.anonymous_login" errLabel="{{'common.base.UserNameLabel' | i18n}}"></att-text-input>
+
+                <div class="validationErr" ng-if="usernameErrMsg != ''">
+                    <div class="validation-error">{{usernameErrMsg}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row row">
+            <div class="formWrapLabel">
+                <label for="passwordInput">
+                    <span i18n="common.base.Password"></span>:
+                </label>
+            </div>
+            <div class="formWrapContent">
+                <att-text-input input-id="passwordInput" input-type="password" ng-change="onPasswordChanged()" ng-model="vm.mailServerObject.password" enter-close-modal="false"
+                                ng-disabled="vm.mailServerObject.anonymous_login" errLabel="{{'common.base.Password' | i18n}}"></att-text-input>
+                <div class="validationErr" ng-if="passwordErrMsg != ''">
+                    <div class="validation-error">{{passwordErrMsg}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row row">
+            <div class="formWrapLabel">
+                <label for="senderEmailAddressInput">
+                    <span i18n="common.notifications.SenderEmailAddress"></span>:
+                </label>
+            </div>
+            <div class="formWrapContent">
+                <att-text-input input-id="senderEmailAddressInput" ng-model="vm.mailServerObject.sender_address" errLabel="{{'common.notifications.SenderEmailAddress' | i18n}}" enter-close-modal="false"></att-text-input>
+            </div>
+        </div>
+    </form>
+
+    <div class="separator-horizontal" style="margin-top:8px; margin-bottom:14px;"></div>
+
+    <div class="form-row row">
+        <label class="sectionHeader" i18n="common.notifications.TestMailLabel"></label>
+
+        <div class="formWrapLabel">
+            <label for="testEmailAddressInput">
+                <span i18n="common.base.SendTo"></span>:
+            </label>
+        </div>
+        <div class="formWrapContent testEmailAddressContainer">
+            <att-text-input input-id="testEmailAddressInput" ng-change="testMailAddressChanged()" ng-model="vm.testMailAddress" errLabel="'Email address for test email'" enter-close-modal="false"></att-text-input>
+            <div class="validationErr" ng-if="vm.testMailAddressErrMsg != ''">
+                <div class="validation-error">{{vm.testMailAddressErrMsg}}</div>
+            </div>
+        </div>
+        <div class="formWrapContent" style="width: 114px; border: 1px solid transparent;" att-custom-tooltip custom-tooltip-text="{{sendTestMailTooltip}}">
+            <att-button button-class="modal-attBtn" style="margin-top: -1px;"
+                        enter-close-modal="false" on-click="sendTestMail()"
+                        ng-disabled="isSendTestMailDisabled()" label="server.SendTestMailTitle"></att-button>
+        </div>
+    </div>
+
+</div>

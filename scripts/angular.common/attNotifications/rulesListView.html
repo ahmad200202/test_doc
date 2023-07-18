@@ -1,0 +1,60 @@
+<div class="notificationsRules" ng-controller="attNotificationsRulesListCtrl">
+    <div class="notificationsRadioButtonsAsTabs">
+        <att-radio-button label="Servers"
+                          group-name="notificationGroup"
+                          ng-model="attNotificationsServiceData.rulesListSelectedGroupType"
+                          value="'SERVER'"
+                          ng-change="onChangeGroupType($event, 'SERVER')"
+                          ng-class="{'selectedRB': (attNotificationsServiceData.rulesListSelectedGroupType == 'SERVER')}"
+                          input-id="serversNotificationRadioBtn">
+        </att-radio-button>
+        <att-radio-button label="Tasks"
+                          group-name="endpointsByRoles"
+                          ng-model="attNotificationsServiceData.rulesListSelectedGroupType"
+                          value="'TASK'"
+                          ng-change="onChangeGroupType($event, 'TASK')"
+                          ng-class="{'selectedRB': (attNotificationsServiceData.rulesListSelectedGroupType == 'TASK')}"
+                          input-id="tasksNotificationRadioBtn">
+        </att-radio-button>
+    </div>
+    <div class="notificationsRulesActionBar">
+        <att-button type="glyph" glyph-class="att-glyph icon-gl-Plus"      label="common.base.New"              authorized-action="PutNotificationRule"     caller-role="{{attNotificationsServiceData.callerRole}}"  on-click="onNewNotificationRule()"      ></att-button>
+        <att-button type="glyph" glyph-class="att-glyph icon-gl-Open"      label="common.base.OpenDots" on-click="onEditNotificationRule()"  ng-disabled="!canEditNotificationRule()"></att-button>
+        <att-button type="glyph" glyph-class="att-glyph icon-gl-enabled"   label="common.base.Enable"           authorized-action="EnableNotificationRule"  caller-role="{{attNotificationsServiceData.callerRole}}"  on-click="onEnableNotificationRule()"   ng-if="canActivateNotificationRule()"   ng-disabled="isDisabledActivateDeActivate()"></att-button>
+        <att-button type="glyph" glyph-class="att-glyph icon-gl-disabled"  label="common.base.Disable"          authorized-action="EnableNotificationRule"  caller-role="{{attNotificationsServiceData.callerRole}}"  on-click="onDisableNotificationRule()"  ng-if="canDeActivateNotificationRule()" ng-disabled="isDisabledActivateDeActivate()"></att-button>
+        <att-button type="glyph" glyph-class="att-glyph icon-gl-Delete"    label="common.base.Delete_Dots"      authorized-action="DeleteNotificationRule"  caller-role="{{attNotificationsServiceData.callerRole}}"  on-click="onDeleteNotificationRule()"   ng-if="canDeleteNotificationRule()"></att-button>
+        <att-search ng-model="rulesListSearchText" place-holder="{{'common.notifications.SearchRules' | i18n}}"></att-search>
+    </div>
+
+    <div class="notificationsRulesTableWrap">
+        <div att-grid grid-id="NotificationsRulesTable"
+             id="NotificationsRulesTable"
+             data="attNotificationsServiceData.rulesListDisplayArray"
+             enable-selection="true"
+             fixed-header="true"
+             filter="rulesListSearchText"
+             multiple-selection="true"
+             api="rulesListGridApi">
+            <column display-name="{{'common.notifications.ColumnHeaderName' | i18n}}"    model-prop="notification.name" is-mandatory="true" css-class="nameColumn"></column>
+            <column display-name="{{'common.notifications.ColumnHeaderEvents' | i18n}}"  model-prop="uiInfo.eventsNamesAsString" is-mandatory="true">
+                <div class="itemAsStringColumnContentWrap" overflow-dots percent-range="4" att-custom-tooltip custom-tooltip-template="'itemsWithTooltipTpl.html'" custom-template-data="rowData.uiInfo.eventsNames">
+                    <span class="itemAsStringColumnSpan">{{rowData.uiInfo.eventsNamesAsString}}</span>
+                </div>
+            </column>
+            <column display-name="{{'common.notifications.ColumnHeaderRecipients' | i18n}}" model-prop="uiInfo.recipientsAsString">
+                <div class="itemAsStringColumnContentWrap" overflow-dots percent-range="4" att-custom-tooltip custom-tooltip-template="'itemsWithTooltipTpl.html'" custom-template-data="rowData.uiInfo.recipients">
+                    <span class="itemAsStringColumnSpan">{{rowData.uiInfo.recipientsAsString}}</span>
+                </div>
+            </column>
+            <column display-name="{{'common.notifications.ColumnHeaderAssociationType' | i18n}}" model-prop="uiInfo.associationType"></column>
+            <column display-name="{{'common.notifications.ColumnHeaderEnabled' | i18n}}" model-prop="notification.enabled"  is-mandatory="true" css-class="narrowColumn">
+                <att-checkbox ng-model="rowData.notification.enabled" ng-click="parentCtrl.onToggleNotificationRuleState($event, rowData)" data-disabled="parentCtrl.isDisabledActivateDeActivate()"></att-checkbox>
+            </column>
+        </div>
+        <div class="itemsCountWrap">
+            <span class="itemCountBySearch">{{rulesListGridApi.info.displayedItemsLength | number}} <span class="itemsCountText" i18n="common.notifications.NotificationsRulesInTableCount"></span></span>
+            <span ng-if="rulesListGridApi.info.selectedItemsLength > 0" class="itemSelectedBySearch">, {{rulesListGridApi.info.selectedItemsLength | number}} <span class="itemsCountText" i18n="mgr_app.Selected"></span></span>
+        </div>
+    </div>
+
+</div>

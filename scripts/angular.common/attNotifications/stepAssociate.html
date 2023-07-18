@@ -1,0 +1,103 @@
+<span class="fullVerticalSep"></span>
+<div class="associateTasksStep">
+    <div class="associateRadioButtonsWrap">
+        <span style="margin-top:0px; margin-bottom:0px; float:left; margin-right:16px;">{{'common.notifications.AssociateWith' | i18n}}:</span>
+        <!--<att-radio-button group-name="tasksRBGroup"   ng-change="onAssociateGroupRbChanged($event)"-->
+        <!--input-id="rd1_AssociateBy_PATTERN"     ng-model="vm.uiData.associate.group"-->
+        <!--value="'PATTERN'" label="common.notifications.AssociateGroup.PATTERN">-->
+        <!--</att-radio-button>-->
+        <att-radio-button group-name="tasksRBGroup"   ng-change="onAssociateGroupRbChanged($event)"
+                          input-id="rd2_AssociateBy_SELECTED"     ng-model="vm.uiData.associate.group"
+                          value="'SELECTED'" label="common.notifications.AssociateGroup.SELECTED">
+        </att-radio-button>
+        <att-radio-button group-name="tasksRBGroup"   ng-change="onAssociateGroupRbChanged($event)"
+                          input-id="rd3_AssociateBy_ALL"    ng-model="vm.uiData.associate.group"
+                          value="'ALL'"     label="common.notifications.AssociateGroup.ALL">
+        </att-radio-button>
+    </div>
+    <div class="associateMainContent">
+        <div render-if="vm.uiData.associate.group == 'SELECTED'" class="H100W100">
+            <div class="associateLeft">
+                <div class="wrapLabels">
+                    <span class="associateGroupLabel" i18n="common.notifications.SelectTasks"></span>
+                </div>
+                <div class="upperFilterSection">
+                    <div class="selectServerWrap">
+                        <span class="selectServerLabel">{{'common.notifications.SelectServer' | i18n}}:</span>
+                        <att-select-list model="associateCtrlData.selectedServer" on-after-item-selected="selectFilterServer(item)"
+                                         source-array="vm.uiData.associate.validServersNamesList" prop="name" dataprop="lookFor" style="float: right; width: calc(100% - 50px)">
+                        </att-select-list>
+                    </div>
+                    <div class="searchInputWrap">
+                        <att-search ng-model="associateCtrlData.tasksSearch" place-holder="{{'common.notifications.SearchTasks'| i18n}}" style="width: 100%; float: left;"></att-search>
+                    </div>
+                </div>
+                <div class="lowSectionGrid">
+                    <div id="AvailableTasksGrid" att-grid grid-id="AvailableTasksGrid"
+                         data="vm.uiData.associate.displayedTasksList"
+                         filter="associateCtrlData.tasksSearch"
+                         api="availableTasksGridApi"
+                         config="availableTasksGridConfig"
+                         identifier="joined_server_task"
+                         enable-selection="true"
+                         fixed-header="true"
+                         order-predicate="server_name"
+                         multiple-selection="true"
+                         columns-in-search="columnsInSearchAvailableTasksGrid"
+                         secondary-sort-prop="task_name">
+                        <column model-prop="server_name" display-name="{{'common.notifications.ColumnServer'|i18n}}" is-mandatory="true"></column>
+                        <column model-prop="task_name" display-name="{{'common.notifications.ColumnTask'|i18n}}" is-mandatory="true"></column>
+                    </div>
+
+                    <span class="listItemsLength">{{availableTasksGridApi.info.displayedItemsLength}} tasks, {{availableTasksGridApi.info.selectedItemsLength}} selected</span>
+                </div>
+            </div>
+            <div class="associateMid">
+                <div class="btnsMidWrap">
+                    <span class="attBtn modal-attBtn" id="AddSelectionBtn" title="{{'common.notifications.AssociateButton.AddSelection' | i18n}}" ng-click="addSelectedTasksToRule($event)"
+                          ng-class="{'disabled' :  (availableTasksGridApi.info.selectedItemsLength == 0)}">></span>
+
+                    <span class="attBtn modal-attBtn" id="RemoveSelectionBtn" title="{{'common.notifications.AssociateButton.RemoveSelection' | i18n}}" ng-click="removeSelectedTasksFromRule($event)"
+                          ng-class="{'disabled' : (associatedTasksInRuleGridApi.info.selectedItemsLength == 0 || vm.uiData.associate.selectedTasks.length == 0)}"><</span>
+                    <span class="btnsGroupSep"></span>
+                    <span class="attBtn modal-attBtn" id="AddAllBtn" title="{{'common.notifications.AssociateButton.AddALL' | i18n}}" ng-click="addAllTasksToRule($event)"
+                          ng-class="{'disabled' : (availableTasksGridApi.info.displayedItemsLength == 0)}">>></span>
+
+                    <span class="attBtn modal-attBtn" id="RemoveAllBtn" title="{{'common.notifications.AssociateButton.RemoveALL' | i18n}}" ng-click="removeAllTasksFromList($event)"
+                          ng-class="{'disabled' : (vm.uiData.associate.selectedTasks.length == 0)}"><<</span>
+                </div>
+            </div>
+            <div class="associateRight">
+                <div class="labelAndSearchWrap">
+                    <label class="associatedTasksLabel">{{'common.notifications.AssociatedTasks' | i18n}}</label>
+                    <span class="glyphicons glyphicons-search openSearchButton" id="OpenSearchBtn" ng-init="(associateCtrlData.showSecondSearch = false)"
+                          ng-show="(!associateCtrlData.showSecondSearch)" ng-class="{'ShowAni':(!associateCtrlData.showSecondSearch)}"
+                          ng-click="(associateCtrlData.showSecondSearch = (!associateCtrlData.showSecondSearch))"></span>
+                    <att-search place-holder="Search" ng-model="associateCtrlData.searchSelectedTasks"
+                                id="SearchBarInAssociatedTasks" ng-class="{'ShowAni':(associateCtrlData.showSecondSearch)}"
+								ng-show="associateCtrlData.showSecondSearch"></att-search>
+                </div>
+                <div class="lowSectionGrid">
+                    <div id="associatedTasksInRuleGrid" att-grid grid-id="associatedTasksInRuleGrid"
+                         data="vm.uiData.associate.selectedTasks"
+                         filter="associateCtrlData.searchSelectedTasks"
+                         api="associatedTasksInRuleGridApi"
+                         config="associatedTasksInRuleGridConfig"
+                         columns-in-search="columnsInSearchAssociatedTasksInRuleGrid"
+                         identifier="joined_server_task"
+                         enable-selection="true"
+                         fixed-header="true"
+                         order-predicate="server_name"
+                         multiple-selection="true"
+                         secondary-sort-prop="task_name">
+                        <column model-prop="server_name" display-name="{{'common.notifications.ColumnServer'|i18n}}" is-mandatory="true"></column>
+                        <column model-prop="task_name" display-name="{{'common.notifications.ColumnTask'|i18n}}" is-mandatory="true"></column>
+                    </div>
+                    <span class="listItemsLength">{{associatedTasksInRuleGridApi.info.displayedItemsLength}} tasks</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

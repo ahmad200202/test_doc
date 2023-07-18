@@ -1,0 +1,28 @@
+<div class="newEditNotificationsWizardWrap">
+    <div class="row attNotificationsWizardUpper" ng-class="{LastStep:currentStep==steps.length-1}">
+        <div class="notificationStepTitle">{{steps[currentStep].stepTitle}}</div>
+        <div class="notificationStepSubTitle">{{steps[currentStep].stepSubTitle}}</div>
+        <div class="notificationStepSubTitleMidNote" ng-if="( steps[currentStep].stepSubtitleNote != null ) && ( steps[currentStep].stepSubtitleNote != '' )">{{steps[currentStep].stepSubtitleNote}}</div>
+        <div class="notificationStepSubTitleAfterNote" ng-if="( steps[currentStep].stepSubtitleAfternote != null ) && ( steps[currentStep].stepSubtitleAfternote != '' )">{{steps[currentStep].stepSubtitleAfternote}}</div>
+        <div class="notificationWizardStepsContainer col-sm-9 ">
+            <div class="stepContentWrap" ng-transclude></div>
+        </div>
+        <div class="col-sm-3 WizardNavRight wizardNavWrap" ng-class="{'disabled':!isAllWizardStepsValid()}">
+            <wizard-nav></wizard-nav>
+        </div>
+    </div>
+
+    <div class="row wizardFooter modal-footer">
+        <div class="wizardBtnsWrapper" ng-if="vm.uiData.showWizardButtonsForViewerOnly == false">
+            <button class="modal-attBtn separatedBtn" type="button" close-modal="cancel" i18n="common.base.Cancel"></button>
+            <button class="modal-attBtn" type="button" wizard-previous ng-disabled="hasPrevious()" i18n="common.base.Prev_lt"></button>
+            <button class="modal-attBtn" type="button" wizard-next  ng-disabled="hasNext()" i18n="common.base.Next_gt"></button>
+            <button class="modal-attBtn" type="button" close-modal="ok" wizard-finish ng-disabled="!canClickSave()" i18n="common.base.Finish"></button>
+            <att-button ng-if="modalOptions.resizable" class='modal-resizer modalResizerBtn'></att-button>
+        </div>
+        <div class="wizardBtnsWrapper" ng-if="vm.uiData.showWizardButtonsForViewerOnly == true">
+            <button class="modal-attBtn" type="button" close-modal="cancel" i18n="common.base.Close"></button>
+            <att-button ng-if="modalOptions.resizable" class='modal-resizer modalResizerBtn'></att-button>
+        </div>
+    </div>
+</div>

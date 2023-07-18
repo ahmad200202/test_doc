@@ -1,0 +1,7 @@
+<div style="width: 100%;height: 100%; overflow: auto;">
+    <ul class="moreDetailsMessageList">
+        <li ng-repeat="message in vm track by $index" ng-class="{'firstMsgItem' : ($index == 0), 'secondMsgItem' : ($index == 1)}">
+            <span>{{message}}</span>
+        </li>
+    </ul>
+</div>

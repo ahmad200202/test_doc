@@ -1,0 +1,49 @@
+<div class="listContentContainer">
+    <div id="listLoadedContent">
+        <div id="LeftBarWrapper" class="row" ng-class="{leftNavOpen:isLeftPanelOpen, leftNavClosed: !isLeftPanelOpen}">
+            <div id="LeftBar">
+                <div ng-if="listDataReqComplete && listData.length === 0" style="position:absolute; top:4px; left:10px; font-size:16px; font-weight:600; width:auto;">
+                    <span>{{noItemsFoundText}}</span>
+                </div>
+                <div id="leftBarHeader" class="row">
+                    <span id="leftBarHeaderText"  i18n="{{leftPanelHeaderText}}"></span>
+                    <div class="contentViewSelectList" ng-if="(contentSelectTypes != null && contentSelectTypes.length > 0)">
+                        <att-select-list
+                                id="logs_type"
+                                source-array="contentSelectTypes"
+                                model="contentSelectedType"
+                                prop="name"
+                                dataprop="type"
+                                on-item-selected="onContentTypeSelected(item)"
+                                allow-search="false">
+                        </att-select-list>
+                    </div>
+                    <div class="toggleLeftNavWrap">
+                        <span class="toggleLeftNavBtn" ng-click="toggleLeftNav()"></span>
+                    </div>
+                </div>
+                <div class="collapsedItem" id="leftNavContent">
+                    <div id="listDataItems">
+                        <att-list data="listData" is-first-item-selected="isFirstItemSelected" click-item-callback="onListItemClick()(item)"></att-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="listContentTextPanel" class="listContentClosed">
+            <div id="listActionBar" ng-if="isActionBarVisible" att-custom-tooltip custom-tooltip-text="{{actionBarTooltip}}">
+                <att-button glyph-class="glyphicons {{actionBarClass}}"  type="glyph" label="{{actionBarLabel}}" ng-disabled="actionBarDisabledFnc()()" on-click="actionBarClickFnc()()"></att-button>
+            </div>
+            <att-text-viewer text-records="itemText"
+                             is-download-file-enabled="isDownloadFileEnabled"
+                             download-log-file-fnc="midTierDownloadLogFileFnc"
+                             download-log-file-tooltip="downloadLogFileTooltip"
+                             get-further-text-fnc="midTierGetFurtherTextFnc"
+                             highlight-rows-criteria="highlightRowsCriteria"
+                             is-font-effects-enabled="isFontEffectsEnabled"></att-text-viewer>
+        </div>
+        <div id="sparkUrlContainter" ng-if="sparkJobUrl != undefined && sparkJobUrl !='http://'">
+            <div id="sparkUrlIcon"></div>
+            <div id="sparkUrlLink" class="linkStyle"><a href={{sparkJobUrl}} target="_blank">View Spark History Server</a></div>
+        </div>
+    </div>
+</div>

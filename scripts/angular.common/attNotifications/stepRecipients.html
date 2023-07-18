@@ -1,0 +1,32 @@
+<div class="H100W100 stepRecipients">
+    <div class="recipientsSectionUpper">
+        <att-checkbox ng-model="vm.uiData.deliveryAction.isEventLog" ng-change="onChangeDeliveryAction($event, 'WindowsEventLog')" strict-label="{{'common.notifications.WindowsEventLog' | i18n}}" class="rowCheckBox"></att-checkbox>
+        <att-checkbox ng-model="vm.uiData.deliveryAction.isEmail" ng-change="onChangeDeliveryAction($event, 'EmailRecipients')" strict-label="{{'common.notifications.EmailRecipients' | i18n}}" class="rowCheckBox"></att-checkbox>
+        <div class="infoSpanWrap">
+            <span class="infoSpan" i18n="common.notifications.MultipleEmailAddressesMustBeSeparatedBySemiColon"></span>
+        </div>
+    </div>
+
+    <div class="recipientsSectionMain">
+        <div class="recipientsRow">
+            <label class="emailRecipientsTextareaLabel" i18n="common.notifications.ToLabel"></label>
+            <textarea ng-model="vm.uiData.emailRecipients.to" ng-change="onChangeEmailRecipients()" ng-disabled="!vm.uiData.deliveryAction.isEmail" placeholder="{{'common.notifications.EnterRecipients' | i18n}}"></textarea>
+            <div class="errorEmail" ng-if="(vm.uiData.deliveryAction.isEmail && vm.uiData.emailRecipientsValidation.to != true)" i18n="common.notifications.AtLeastOneEmailAddressIsNotValid"></div>
+        </div>
+
+        <div class="recipientsRow">
+            <label class="emailRecipientsTextareaLabel" i18n="common.notifications.CcLabel"></label>
+            <textarea ng-model="vm.uiData.emailRecipients.cc" ng-change="onChangeEmailRecipients()" ng-disabled="!vm.uiData.deliveryAction.isEmail"></textarea>
+            <div class="errorEmail" ng-if="(vm.uiData.deliveryAction.isEmail && vm.uiData.emailRecipientsValidation.cc != true)" i18n="common.notifications.AtLeastOneEmailAddressIsNotValid"></div>
+        </div>
+
+        <div class="recipientsRow">
+            <label class="emailRecipientsTextareaLabel" i18n="common.notifications.BccLabel"></label>
+            <textarea ng-model="vm.uiData.emailRecipients.bcc" ng-change="onChangeEmailRecipients()" ng-disabled="!vm.uiData.deliveryAction.isEmail"></textarea>
+            <div class="errorEmail" ng-if="(vm.uiData.deliveryAction.isEmail && vm.uiData.emailRecipientsValidation.bcc != true)" i18n="common.notifications.AtLeastOneEmailAddressIsNotValid"></div>
+        </div>
+    </div>
+
+
+
+</div>

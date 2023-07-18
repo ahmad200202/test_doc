@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html style="height: 100%;width: 100%;overflow: hidden;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Qlik Test API</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="bootstrap.css"/>
+    <link type="text/css" rel="sylesheet" href="scripts/angular.common/a_node_modules/json-formatter/dist/json-formatter.min.css"/>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="scripts/angular.common/a_node_modules/json-formatter/dist/json-formatter.min.js"></script>
+
+
+    <script src="scripts/angular.common/attGlobalMessages/attGlobalMessages.js"></script>
+    <script src="scripts/angular.common/attLoader/attLoader.js"></script>
+    <script src="scripts/angular.common/commonConstants.js"></script>
+    <script src="scripts/angular.common/attCommonDirectives.js"></script>
+    <script src="scripts/angular.common/keyEvents.js"></script>
+    <script src="scripts/angular.common/attCommonServices.js"></script>
+    <script src="scripts/common/AttunityUtils/Object.js"></script>
+    <script src="scripts/common/AttunityUtils/Array.js"></script>
+    <script src="scripts/angular.common/utils.js"></script>
+    <script src="scripts/angular.common/FormValidation.js"></script>
+    <script src="scripts/angular.common/tokenInjector.js"></script>
+    <script src="node_modules/ng-infinite-scroll/build/ng-infinite-scroll.min.js"></script>
+    <script src="testAppCustomization.js"></script>
+
+    <!-- app generated scripts -->
+    <script src="scripts/gen/GenDataObjects.js"></script>
+    <script src="scripts/gen/GenTestApiDataObjects.js"></script>
+    <script src="scripts/factories/gen/GenFactories.js"></script>
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .inputFromUser {
+            margin-left: 100px !important;
+            margin-top: 5px;
+        }
+
+        input.ng-invalid-required {
+            color: red;
+            border: 1px solid red;
+        }
+
+        .topHeader {
+            justify-content: space-between;
+            padding-left: 20px;
+            padding-right: 20px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, #ebeaea 0%, #fcfcfc 59%);
+            height: 40px;
+            width: 100%;
+            border-bottom: 1px solid lightgrey;
+        }
+
+        .bottomFooter {
+            height: 40px;
+            width: 100%;
+            border-top: 1px solid lightgrey;
+            background: linear-gradient(to bottom, #ebeaea 0%, #fcfcfc 59%);
+        }
+
+        .mainContent {
+            padding-left: 10px;
+            height: calc(100% - 80px);
+            width: 100%;
+        }
+
+        form {
+            height: 100%;
+            width: 100%;
+        }
+
+        .right,
+        .left {
+            padding: 10px;
+            height: 100%;
+            width: 50%;
+            float: left;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .right {
+            border-left: 1px solid lightgray;
+            overflow-x: auto;
+        }
+
+        .row {
+            margin: 0;
+        }
+
+        select {
+            width: 300px;
+            height: 25px;
+        }
+
+        option {
+            color: grey;
+        }
+
+        .col-md-4,
+        .col-md-3 {
+            padding-left: 0;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        h3 {
+            text-decoration: underline;
+            color: #1882de;
+        }
+        .logo {
+            width: 100px;
+            height: 24px;
+            float: left;
+            background-repeat: no-repeat;
+            background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMS4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCA0MzEuMiAxMjYuNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDMxLjIgMTI2LjU7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiM1NDU2NUI7fQ0KCS5zdDF7ZmlsbDojMDU5ODQ4O30NCjwvc3R5bGU+DQo8Zz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjUxLjgsNjYuOWMtMS45LTMuMSwwLjYtNS43LDAuNi01LjdsMjItMjIuN2MyLjUtMi42LTEuMS0yLjYtMS4xLTIuNmgtMjAuNWMtMy42LDAtNi4xLDIuNi02LjEsMi42DQoJCWwtMjAuNCwyMS42Yy0yLjUsMi42LTIuNS0xLTIuNS0xVjEyYzAtMy42LTMuNi0zLjYtMy42LTMuNmgtMTUuNWMtMy41LDAtMy41LDMuNS0zLjUsMy41djk4LjdjMCwzLjYsMy42LDMuNiwzLjYsMy42aDE1LjQNCgkJYzMuNSwwLDMuNS0zLjUsMy41LTMuNVY5My4zYzAtMy42LDIuNi02LjEsMi42LTYuMWw3LjMtNi44bDE4LjIsMzAuNmMxLjgsMy4xLDUuNCwzLjEsNS40LDMuMWgxOS41YzMuNiwwLDEuNy0zLjEsMS43LTMuMQ0KCQlMMjUxLjgsNjYuOUwyNTEuOCw2Ni45eiBNMTg1LDExMC41VjM5LjRjMC0zLjYtMy42LTMuNi0zLjYtMy42aC0xNS42Yy0zLjYsMC0zLjYsMy42LTMuNiwzLjZ2NzEuMWMwLDMuNiwzLjYsMy42LDMuNiwzLjZoMTUuNg0KCQlDMTg1LDExNC4xLDE4NSwxMTAuNSwxODUsMTEwLjVMMTg1LDExMC41eiBNMTg0LjQsMjJWMTEuOGMwLDAsMC0zLjUtMy41LTMuNWgtMTUuMmMwLDAtMy41LDAtMy41LDMuNVYyMmMwLDAsMCwzLjUsMy41LDMuNUgxODENCgkJQzE4MSwyNS41LDE4NC40LDI1LjUsMTg0LjQsMjJMMTg0LjQsMjJ6IE0xNDUuNSwxMTAuNVYxMmMwLTMuNi0zLjYtMy42LTMuNi0zLjZIMTI2Yy0zLjYsMC0zLjYsMy42LTMuNiwzLjZ2OTguNQ0KCQljMCwzLjYsMy42LDMuNiwzLjYsMy42aDE1LjlDMTQ1LjUsMTE0LjEsMTQ1LjUsMTEwLjUsMTQ1LjUsMTEwLjVMMTQ1LjUsMTEwLjV6IE0xMDkuOCwxMDYuM2MwLDAsMi0yLjMtMC4zLTQuM0w5Ni44LDkwLjkNCgkJYzUuNy04LjUsOS4xLTE4LjYsOS4xLTI5LjZjMC0yOS4yLTIzLjctNTIuOS01Mi45LTUyLjlDMjMuNyw4LjMsMCwzMiwwLDYxLjNjMCwyOS4yLDIzLjcsNTIuOSw1Mi45LDUyLjljMTAuNywwLDIwLjYtMy4yLDI5LTguNw0KCQlsMTQsMTIuMWMwLDAsMi4zLDIsNC4zLTAuM0wxMDkuOCwxMDYuM0wxMDkuOCwxMDYuM3ogTTgzLjUsNjEuM2MwLDE2LjktMTMuNywzMC42LTMwLjYsMzAuNmMtMTYuOSwwLTMwLjYtMTMuNy0zMC42LTMwLjYNCgkJYzAtMTYuOSwxMy43LTMwLjYsMzAuNi0zMC42QzY5LjgsMzAuNyw4My41LDQ0LjQsODMuNSw2MS4zTDgzLjUsNjEuM3oiLz4NCgk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNDI4LjMsMTA3LjRsLTE3LTE0LjNjNS45LTkuNCw5LjQtMjAuNSw5LjQtMzIuNGMwLTMzLjUtMjcuMi02MC43LTYwLjctNjAuN2MtMzMuNSwwLTYwLjcsMjcuMi02MC43LDYwLjcNCgkJYzAsMzMuNSwyNy4yLDYwLjcsNjAuNyw2MC43YzEzLDAsMjUuMS00LjEsMzUtMTEuMWwxOC4xLDE1LjJjMCwwLDIuNywyLjMsNS0wLjRsMTAuOC0xMi44QzQyOC43LDExMi40LDQzMSwxMDkuNyw0MjguMywxMDcuNA0KCQlMNDI4LjMsMTA3LjR6IE0zOTcuMiw2MC43YzAsMjAuNi0xNi43LDM3LjMtMzcuMywzNy4zYy0yMC42LDAtMzcuMy0xNi43LTM3LjMtMzcuM2MwLTIwLjYsMTYuNy0zNy4zLDM3LjMtMzcuMw0KCQlDMzgwLjUsMjMuNCwzOTcuMiw0MC4xLDM5Ny4yLDYwLjdMMzk3LjIsNjAuN3oiLz4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzM2LDYwLjdjMC0xMy4yLDEwLjctMjMuOSwyMy45LTIzLjljMTMuMiwwLDIzLjksMTAuNywyMy45LDIzLjljMCwxMy4yLTEwLjcsMjMuOS0yMy45LDIzLjkNCgkJQzM0Ni43LDg0LjcsMzM2LDc0LDMzNiw2MC43TDMzNiw2MC43eiIvPg0KCTxnPg0KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDE4LDE3LjljMC0zLjcsMy02LjYsNi42LTYuNmMzLjcsMCw2LjYsMyw2LjYsNi42YzAsMy42LTMsNi42LTYuNiw2LjZDNDIxLDI0LjUsNDE4LDIxLjUsNDE4LDE3Ljl6DQoJCQkgTTQyNC42LDEyLjJjLTMuMSwwLTUuNiwyLjUtNS42LDUuN2MwLDMuMiwyLjQsNS43LDUuNiw1LjdjMy4yLDAsNS42LTIuNSw1LjYtNS43QzQzMC4yLDE0LjcsNDI3LjgsMTIuMiw0MjQuNiwxMi4yeiBNNDIzLjEsMjEuOQ0KCQkJaC0wLjl2LTguMWgyLjljMS40LDAsMi41LDAuNywyLjUsMi4yYzAsMS4zLTAuNywyLjEtMS45LDIuMmwyLjMsMy42aC0xLjFsLTIuMS0zLjZoLTEuNlYyMS45eiBNNDIzLjEsMTcuNmgxLjgNCgkJCWMxLjEsMCwxLjgtMC4yLDEuOC0xLjVjMC0xLTAuOC0xLjQtMS44LTEuNGgtMS44VjE3LjZ6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=")
+        }
+    </style>
+</head>
+<body style="height: 100%;width: 100%;">
+<div ng-controller="TestApiController" style="height: 100%;width: 100%;">
+    <div class="topHeader">
+        <div style="display: flex; align-items: center">
+            <span class="logo"></span>
+            <span style="font-weight: bold;">Qlik Test API</span>
+        </div>
+        <a target="_blank" href="https://help.qlik.com">help</a>
+    </div>
+    <div class="mainContent">
+        <form name="myForm">
+            <div class="left">
+                <div class="row" style="padding-bottom: 10px;">
+                    <input class="form-control" type="text" ng-model="filterReq"
+                           placeholder="Search {{requestsDropDownSrcLength}} Api's"/>
+                </div>
+                <div class="row">
+                    <select class="form-control" ng-model="model.selectedReq" ng-change="selectReq()">
+                        <option></option>
+                        <option ng-repeat="req in requestsDropDownSrc | reqFilter :filterReq" value="{{req}}"
+                                ng-selected="model.fromStorage==req">{{requestsDropDownSrc[req]}}
+                        </option>
+                    </select>
+                </div>
+                <div class="row">
+                    <span style="font-size:10px;color: #808080;opacity: 0.9;"
+                          ng-if="model.urlTemplate">Url Template: {{model.urlTemplate}}</span>
+                </div>
+                <div class="row">
+                    <div class="QsParamsContainer" ng-show="model.selectedReq!= '' ">
+                        <h3>REQUEST PARAMS</h3>
+                        <div class="row" ng-repeat="key in requestParams.keys">
+                            <div ng-switch="getType(requestParamsCpy[key])">
+                                <div ng-switch-when="number">
+                                    <div class="col-md-3"> {{key}}</div>
+                                    <div class="col-md-3"><input class="inputFromUser" type="number"
+                                                                 ng-model="requestParams[key]"
+                                                                 ng-keydown="keyDownHandler($event)" rel="{{key}}"
+                                                                 ng-required="paramsValidationObj[key].required"/></div>
+                                </div>
+                                <div ng-switch-when="boolean">
+                                    <div class="col-md-3">{{key}}</div>
+                                    <div class="col-md-3"><input class="inputFromUser" type="checkbox"
+                                                                 ng-model="requestParams[key]"
+                                                                 ng-keydown="keyDownHandler($event)" rel="{{key}}"/>
+                                    </div>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="col-md-3">{{key}}</div>
+                                    <div class="col-md-3"><input class="inputFromUser" type="text"
+                                                                 ng-model="requestParams[key]"
+                                                                 ng-keydown="keyDownHandler($event)" rel="{{key}}"
+                                                                 ng-required="paramsValidationObj[key].required"/></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="reqBodyContainer" ng-show="requestBody != null">
+                        <h3>REQUEST BODY</h3>
+                        <div class="row" ng-repeat="key in requestBody.keys">
+                            <div ng-switch="getType(requestBodyCpy[key])">
+                                <div ng-switch-when="number">
+                                    <div class="col-md-3">{{key}}</div>
+                                    <div class="col-md-3"><input class="inputFromUser" type="number"
+                                                                 ng-model="requestBody[key]"
+                                                                 ng-keydown="keyDownHandler($event)" rel="{{key}}"
+                                                                 ng-disabled="dataFromRaw"/></div>
+                                </div>
+                                <div ng-switch-when="boolean">
+                                    <div class="col-md-3">{{key}}</div>
+                                    <div class="col-md-3"><input class="inputFromUser" type="checkbox"
+                                                                 ng-model="requestBody[key]"
+                                                                 ng-keydown="keyDownHandler($event)" rel="{{key}}"
+                                                                 ng-disabled="dataFromRaw"/></div>
+                                </div>
+                                <div ng-switch-default>
+                                    <div class="col-md-3">{{key}}</div>
+                                    <div class="col-md-3"><input class="inputFromUser" type="text"
+                                                                 ng-model="requestBody[key]"
+                                                                 ng-keydown="keyDownHandler($event)" rel="{{key}}"
+                                                                 ng-disabled="dataFromRaw"/></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h3>
+                                <input type="checkbox" ng-model="dataFromRaw"/>RAW REQUEST BODY
+                            </h3>
+                            <textarea id="rawReqBody" style="height: 500px; width: 100%" ng-model="rawRequestBody"
+                                      ng-disabled="!dataFromRaw"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row" ng-if="fileUpload">
+                    <input type="file" file-model="fileUploadReq.targetFile"/>
+                </div>
+            </div>
+            <div class="right">
+                <div class="alert alert-danger" role="alert" ng-show="model.error!=null && model.error.length != 0">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>Error!</strong> {{model.error}}
+                </div>
+                <json-formatter ng-if="model.response!=null&& model.response.length!=0" json="model.response" open="100"></json-formatter>
+            </div>
+        </form>
+    </div>
+    <div class="bottomFooter">
+        <button ng-disabled="myForm.$invalid" class="btn btn-success" ng-click="submitReq()"
+                style="margin-left: 47%;margin-top: 4px;height: 30px;width: 120px;">SUBMIT
+        </button>
+    </div>
+</div>
+<script type="text/javascript" src="testApp.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<div id="registerLicenseContainer" ng-controller="RegisterLicensePopupCtrl">
+    <div style="padding-bottom: 4px;">
+        <span i18n={{vm.texts.loadFile}}></span>
+    </div>
+    <div id="loadLicenseFileContainer" ng-if="vm.isReadFileSupported">
+        <att-text-input input-id="licenseFilePath" ng-model="vm.licenseFile.name"></att-text-input>
+        <input file-dialog type="file" Id="licenseFileBrowser" accept=".txt" style="display: none">
+        <att-button label="{{ vm.texts.loadFileBtn | i18n}}" button-class="modal-attBtn" on-click="onLoadLicenseFileClicked()"></att-button>
+    </div>
+    <div id="licenseContentContainer">
+        <span i18n={{vm.texts.contentHeader}} style="padding-bottom: 4px;"></span>
+        <textarea spellcheck="false" type="text" ng-model="vm.licenseFile.content" data-error-style="inline"></textarea>
+    </div>
+</div>

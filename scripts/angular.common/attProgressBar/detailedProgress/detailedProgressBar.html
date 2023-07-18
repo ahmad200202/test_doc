@@ -1,0 +1,23 @@
+<div class="att_detailed_progress_bar">
+    <div class="detailedProgressBarWrap" ng-class="{'full' : showTextualData}" ng-click="onBarClick($event)">
+        <div class="progressHeader" >
+            <span ng-if="topTitle != ''"> {{topTitle}}</span>
+        </div>
+        <div class="progressBar" >
+            <att-progress-bar is-vertical="{{isVertical}}" is-animated="true" value="{{progressValue}}" fill-Color="{{fillColor}}"></att-progress-bar>
+            <div class="progressBarTextualData">
+                <div class="textRow row1"><span class="infoSpan">{{rowOneText}}</span></div>
+                <div class="textRow row2"><span class="infoSpan">{{rowTwoText}}</span></div>
+                <div class="textRow row3"><span class="infoSpan">{{rowThreeText}}</span></div>
+            </div>
+        </div>
+        <div class="progressFooter">
+            <div class="progressTitle1">
+                <span class="infoSpan bold" ng-if="bottomTitle != ''">{{bottomTitle}}</span>
+            </div>
+            <div class="progressTitle2 {{progressTextClass}}">
+                <span class="infoSpan" ng-click="onProgressTitle2Click($event)">{{progressText}}</span>
+            </div>
+        </div>
+    </div>
+</div>

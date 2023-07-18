@@ -1,0 +1,24 @@
+<div ng-show="show" class="{{mode}} {{dockedClass}}" >
+    <span class="globalErrorModeIcon glyphicons {{iconClass}}"></span>
+    <span ng-if="canBeClosed" class="globalErrorCloseBtn" ng-click="hideError()"></span>
+    <div class="multiLineEllipsis">
+        <div>
+            <p>
+                <span ng-if="!messageIsArray" style="float: left" >{{message}}</span>
+                <span ng-if="messageIsArray" style="float: left">
+                    <span ng-repeat="m in message track by $index">
+                        {{m}}
+                        </br>
+                    </span>
+                </span>
+                <!--<span>[ is: {{isVisibleBtnShowMore}} ]</span>-->
+                <span ng-if="isVisibleBtnShowMore" ng-click="showMoreDetails()" style="float: left;" class="additionalMessageExist moreDetailsText">{{moreDetailsLabel}}</span>
+			</p>
+        </div>
+        <!--<a href="#" ></a>-->
+        <div class="longMainTextMoreDetails">
+            <span class="ellipsisIndication" >...</span>
+            <span ng-click="showMoreDetails()" class="moreDetailsText">{{moreDetailsLabel}}</span>
+        </div>
+    </div>
+</div>

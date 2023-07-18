@@ -1,0 +1,19 @@
+<div ng-controller="attNewEditNotificationsWizardCtrl" class="wizardContainer">
+    <wizard template="scripts/angular.common/attNotifications/newEditWizardTemplate.html" finish-callback="onWizardFinish()">
+        <step step-title="{{'common.notifications.Events'| i18n}}" validate="validateStepEvents()" enable-finish="canClickSave()" step-sub-title="{{eventsStepSubTitle}}">
+            <div class="wizItemWrap" ng-include="'scripts/angular.common/attNotifications/stepEvents.html'"></div>
+        </step>
+        <step render-with-if="true" step-title="{{'common.notifications.Associate'| i18n}}" step-visible="vm.uiData.groupType == 'TASK'" validate="validateStepAssociateTasks()" enable-finish="canClickSave()" step-sub-title="{{'common.notifications.AssociateRuleWithTasks'| i18n}}" step-subtitle-note="{{'common.notifications.AssociateNote'| i18n}}" step-subtitle-afternote="{{'common.notifications.AssociateRuleCanOnly'| i18n}}">
+            <div class="wizItemWrap" ng-include="'scripts/angular.common/attNotifications/stepAssociate.html'"></div>
+        </step>
+        <step step-title="{{'common.notifications.Recipients'| i18n}}" validate="validateStepRecipient()" step-sub-title="{{'common.notifications.SendNotificationTo'| i18n}}" enable-finish="canClickSave()">
+            <div class="wizItemWrap" ng-include="'scripts/angular.common/attNotifications/stepRecipients.html'"></div>
+        </step>
+        <step step-title="{{'common.notifications.Message'| i18n}}" validate="validateStepMessages()" step-sub-title="{{'common.notifications.NotificationMessageCanBeEdited'| i18n}}" enable-finish="canClickSave()">
+            <div class="wizItemWrap" ng-include="'scripts/angular.common/attNotifications/stepMessage.html'"></div>
+        </step>
+        <!--<step step-title="{{'common.notifications.Summary'| i18n}}" step-sub-title="{{'common.notifications.SummaryOfNotificationRule'| i18n}}" validate="canClickSave()" enable-finish="canClickSave()">-->
+            <!--<div class="wizItemWrap" ng-include="'scripts/angular.common/attNotifications/stepSummary.html'"></div>-->
+        <!--</step>-->
+    </wizard>
+</div>

@@ -1,0 +1,51 @@
+<div id="loggersConfigurationContainer" ng-class="{'full' : loggers.loggers_configuration != null && isVersionOkForLogOnDemand}">
+    <div id="logOnDemand" ng-if="loggers.loggers_configuration && isVersionOkForLogOnDemand">
+        <div class="row" style="padding-top: 5px">
+            <att-checkbox ng-model="loggers.loggers_configuration.trace_on_error" label="{{'common.loggersConfig.StoreTraceOnError' | i18n}}"></att-checkbox>
+        </div>
+        <div class="row" style="padding-top: 5px">
+            <div style="float: left;padding-left: 23px;">
+                <span i18n="common.loggersConfig.StoreTraceOnErrorMemory" style="line-height: 26px"></span>
+            </div>
+            <div style="float: left; margin-left: 15px">
+                <att-number-stepper ng-disabled="!loggers.loggers_configuration.trace_on_error"
+                                    input-type="number"
+                                    min="1"
+                                    max="1000"
+                                    number-data="loggers.loggers_configuration.trace_on_error_size_mb"></att-number-stepper>
+            </div>
+        </div>
+    </div>
+    <div id="logConfigHeader">
+        <div id="lcHeaderTexts">
+            <span class="bold" i18n="common.loggersConfig.LoggerSettings"></span>
+            <span style="font-size: 12px;">{{logLevelInstruction}}</span>
+        </div>
+        <div id="globalScroll">
+            <div class="severityLabels">
+                <div class="severityItem" ng-style="getLabelWidth()" ng-repeat="severity in loggerSeverities">
+                    <span ng-if="$first" i18n="common.loggersConfig.Low"></span>
+                    <span ng-if="!$first && !$last" i18n="common.loggersConfig.EmptyString"></span>
+                    <span ng-if="$last" i18n="common.loggersConfig.High"></span>
+                </div>
+            </div>
+            <div ui-slider="slider.options" min="0" max="{{getSliderMaxVal()}}" step="1" ng-model="globalLoggerModel" id="globalLogger" title="{{titlesTexts[globalLoggerModel]}}"></div>
+            <div class="severityLabels">
+                <div class="severityItem" ng-style="getLabelWidth()" ng-repeat="severity in loggerSeverities">
+                    <div class="bottomLabelCenter"></div>
+                    <span title="{{severity.title}}">{{severity.text}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="configByLogContainer">
+        <div ng-repeat="loggerItem in loggersModel" class="loggerRow">
+            <div class="loggerName">
+                <span>{{loggerItem.logName}}</span>
+            </div>
+            <div class="loggerSlider">
+                <div id="{{loggerItem.logName}}" ui-slider="slider.options" min="0" max="{{getSliderMaxVal()}}" step="1" title="{{titlesTexts[loggerItem.logValue]}}" ng-model="loggerItem.logValue" ></div>
+            </div>
+        </div>
+    </div>
+</div>

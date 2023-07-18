@@ -1,0 +1,16 @@
+<div class="H100W100" style="padding: 20px">
+    <div class="dbBrowseMessage" ng-show="vm.items.length == 0">
+        <span i18n="{{vm.texts_obj.no_items_text}}"></span>
+    </div>
+    <div class="dbBrowseContent" ng-if="vm.items != null && vm.items.length > 0">
+        <label ng-if="vm.texts_obj.caption_text && !vm.texts_obj.is_inner" i18n="{{vm.texts_obj.caption_text}}"></label>
+        <att-text-viewer
+                text-records="vm.items"
+                hide_items_on_filter="vm.hide_items_on_filter"
+                on-row-click-func="vm.onRowClick"
+                on-row-dbl-click-func="vm.onDblRowClick"
+                multi-select="vm.allow_multi_select"
+                sub-title="vm.texts_obj.is_inner ? vm.texts_obj.caption_text : ''"
+        ></att-text-viewer>
+    </div>
+</div>

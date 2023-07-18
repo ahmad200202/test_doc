@@ -1,0 +1,60 @@
+<div class="att_action_bar" ng-class="headerCssClass">
+    <div class="headerButtonContainer resizeWrapper">
+        <div class="btn-group" style="height:100%;padding-top: 10px; width:28px; top: 0; right: 0;visibility: hidden;" hide-menu-on-resize>
+            <button style="padding: 0;margin: 0;" type="button" uib-dropdown-toggle class="btn btn-default dropdown-toggle menu-icon" data-toggle="dropdown" aria-expanded="false"></button>
+            <ul class="dropdown-menu resizeMenuWrap" role="menu">
+                <li ng-repeat="att_action in actions" id="{{att_action.id}}"  ng-if="att_action.render_if == null || att_action.render_if()"
+                    ng-class="{'disabled' : att_action.isDisabled()}" style="float:left; width:100%; position:relative;">
+                    <a ng-click="att_action.action ? att_action.action($event) : $event.preventDefault();" ng-disabled="att_action.isDisabled()" title="{{getText(att_action.title)}}">{{getText(att_action.name)}}<i ng-if="att_action.children != null && att_action.children.length > 0" class="contextMenuItemIcon att-glyph icon-gl-Expand_right"></i></a>
+                    <a ng-if="att_action.has_sep" style="padding: 0;float: left;width: 100%;height: 1px;background: lightgray;"></a>
+                    <ul class="dropdown-menu sub-menu" ng-if="att_action.children != null " style="top: 10%;left: inherit;right: 100%;">
+                        <li ng-if="att_action.render_if == null || att_action.render_if()" ng-repeat="att_child in att_action.children" id="{{att_child.id}}" ng-disabled="att_child.isDisabled()">
+                            <a ng-click="att_child.action($event)">{{getText(att_child.name)}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="buttonsResizeContainer">
+            <div style="float: left; height: 100%; width: auto;" class="resizeBtnWrap btn-group" ng-repeat="att_action in actions" ng-if="att_action.render_if == null || att_action.render_if()" ng-init="initButton(att_action)">
+                <att-button id="{{att_action.id}}" type="glyph" glyph-class="{{att_action.glyph_class}}" button-class="{{att_action.css_class}}"
+                            label="{{att_action.show_name == null || att_action.show_name ? getText(att_action.name): ''}}"
+                            title="{{getText(att_action.title)}}" ng-if="(att_action.render_if == null || att_action.render_if())&& att_action.children == null" ng-disabled="att_action.isDisabled()"
+                            on-click="onClick(att_action, $event);">
+                </att-button>
+                <span ng-if="att_action.has_sep && att_action.children == null" style="margin-right: 4px;width:2px;height :95%" class="separator-vertical"></span>
+                <div ng-if="att_action.render_if() && att_action.children != null" title="{{getText(att_action.title)}}" style="height: 100%;" class="btn-group {{att_action.css_class}}" role="group">
+                    <button ng-click="att_action.action ? att_action.action($event) : $event.preventDefault();"
+                            data-toggle="{{att_action.action ? '' : 'dropdown'}}"
+                            ng-class="{'disabled' : att_action.isDisabled()}"
+                            title="{{getText(att_action.title)}}"
+                            style="box-shadow: none;" id="{{att_action.id}}"
+                            class="defaultAction attBtn glyphButton text-right" aria-expanded="false" text-position="right">
+                        <span class="{{att_action.glyph_class}}"></span>
+                        <span class="inner-text">{{getText(att_action.name)}}</span>
+                    </button>
+                    <button data-toggle="dropdown"  class="clickableOnHover dropdown-toggle caretWrap" ng-disabled="att_action.isDisabled()">
+                        <span class="caret" ng-class="{'disabled' : att_action.isDisabled()}"></span>
+                    </button>
+                    <span ng-if="att_action.has_sep && att_action.children != null" style="margin-right: 4px;width:2px;height :95%" class="separator-vertical"></span>
+                    <ul class="dropdown-menu" role="menu">
+                        <li ng-if="(att_child_action.render_if == null || att_child_action.render_if()) && (att_child_action.children == null || att_child_action.children.length == 0)"
+                                ng-repeat="att_child_action in att_action.children" ng-class="{'disabled' : att_child_action.isDisabled()}" label="{{getText(att_child_action.name)}}"
+                                ng-click="att_child_action.action()"
+                                title="{{getText(att_child_action.title)}}">
+                            <a ng-disabled="att_child_action.isDisabled()">{{getText(att_child_action.name)}}</a>
+                        </li>
+                        <li class="dropdown-submenu" ng-if="(att_child_action.render_if == null || att_child_action.render_if()) && att_child_action.children.length > 0" ng-repeat="att_child_action in att_action.children" ng-class="{'disabled' : att_child_action.isDisabled()}" label="{{getText(att_child_action.name)}}" ng-click="att_child_action.action()">
+                            <a ng-disabled="att_child_action.isDisabled()">{{getText(att_child_action.name)}}</a>
+                            <ul ng-if="att_child_action.children.length > 0" class="dropdown-menu sub-menu" style="top: 30%;right: 100%;">
+                                <li ng-if="(att_sub_item.render_if == null || att_sub_item.render_if())" ng-repeat="att_sub_item in att_child_action.children" ng-class="{'disabled' : att_sub_item.isDisabled()}" label="{{getText(att_sub_item.name)}}" ng-click="att_sub_item.action()">
+                                    <a ng-disabled="att_sub_item.isDisabled()">{{getText(att_sub_item.name)}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

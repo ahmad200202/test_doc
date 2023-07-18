@@ -1,0 +1,7 @@
+<div ng-controller="attNewEditNotificationsWizardCtrl" class="wizardContainer viewSummaryOnlyWizard">
+    <wizard template="scripts/angular.common/attNotifications/newEditWizardTemplate.html">
+        <step step-title="{{'common.notifications.Summary'| i18n}}" step-sub-title="{{'common.notifications.SummaryOfNotificationRule'| i18n}}" validate="false" enable-finish="false">
+            <div class="wizItemWrap" ng-include="'scripts/angular.common/attNotifications/stepSummary.html'"></div>
+        </step>
+    </wizard>
+</div>

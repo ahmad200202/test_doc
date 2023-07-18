@@ -1,0 +1,67 @@
+<div class="stepSummaryTpl">
+    <div class="summarySection">
+        <div class="row">
+            <label class="notificationSummaryLabel" i18n="common.notifications.EventLabel"></label>
+        </div>
+        <div class="row">
+            <span class="notificationSummaryProperty">{{vm.uiData.eventDescription}}</span>
+        </div>
+    </div>
+
+    <div class="summarySection">
+        <label class="notificationSummaryLabel" i18n="common.notifications.AssociateWith"></label>
+        <div class="row">
+            <span ng-if="vm.uiData.groupType == 'TASK'" class="notificationSummaryProperty">{{vm.uiData.associate.groupLabel}}</span>
+            <span ng-if="vm.uiData.groupType == 'SERVER'" class="notificationSummaryProperty">{{'common.notifications.AllServers' | i18n}}</span>
+        </div>
+    </div>
+
+    <div class="summarySection">
+        <label class="notificationSummaryLabel" i18n="common.notifications.Recipients"></label>
+        <div class="row">
+            <ul class="notificationSummaryList">
+                <li ng-repeat="actionDelivery in vm.notification.on_set_actions" title="{{actionDelivery.$type}}" ng-if="actionDelivery.$type != 'EmailNotificationDelivery'">
+                    <span ng-if="attNotificationsServiceData.deliveryDisplayNames[actionDelivery.$type] != null">{{attNotificationsServiceData.deliveryDisplayNames[actionDelivery.$type]}}</span>
+                    <span ng-if="attNotificationsServiceData.deliveryDisplayNames[actionDelivery.$type] == null">{{actionDelivery.$type}}</span>
+                </li>
+                <li ng-if="vm.uiData.emailRecipients.to != '' || vm.uiData.emailRecipients.cc != '' || vm.uiData.emailRecipients.bcc != ''">
+                    <span>{{attNotificationsServiceData.deliveryDisplayNames['EmailNotificationDelivery']}}</span>
+                    <div ng-if="vm.uiData.emailRecipients.to != ''" class="emailRecipientsItemWrap">
+                        <span i18n="common.notifications.ToLabel" class="emailRecipientsLabel"></span>
+                        <span class="emailRecipientsText">{{vm.uiData.emailRecipients.to}}</span>
+                    </div>
+                    <div ng-if="vm.uiData.emailRecipients.cc != ''" class="emailRecipientsItemWrap">
+                        <span i18n="common.notifications.CcLabel" class="emailRecipientsLabel"></span>
+                        <span class="emailRecipientsText">{{vm.uiData.emailRecipients.cc}}</span>
+                    </div>
+                    <div ng-if="vm.uiData.emailRecipients.bcc != ''" class="emailRecipientsItemWrap">
+                        <span i18n="common.notifications.BccLabel" class="emailRecipientsLabel"></span>
+                        <span class="emailRecipientsText">{{vm.uiData.emailRecipients.bcc}}</span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="summarySection" ng-if="vm.uiData.deliveryAction.isEmail === true || vm.uiData.deliveryAction.isEventLog === true" >
+        <div class="row">
+            <label class="notificationSummaryLabel" i18n="common.notifications.MessageLabel"></label>
+        </div>
+        <div class="row" ng-if="vm.uiData.deliveryAction.isEmail === true">
+            <span class="notificationSummaryProperty" ng-if="vm.uiData.messages.emailSubject != ''">
+                <span i18n="common.notifications.EmailSubjectLabel"  class="notificationSummaryPropertyEmailPropLabel"></span>
+                <span class="notificationSummaryPropertyEmailSubject">{{vm.uiData.messages.emailSubject}}</span>
+            </span>
+        </div>
+        <div class="row">
+            <span class="notificationSummaryProperty" ng-if="vm.uiData.messages.emailBody != ''">
+                <div ng-if="vm.uiData.deliveryAction.isEmail === false && vm.uiData.deliveryAction.isEventLog" class="notificationSummaryPropertyEmailPropLabel" i18n="common.notifications.WindowsEventLogMessageLabel"></div>
+                <div ng-if="vm.uiData.deliveryAction.isEmail && vm.uiData.deliveryAction.isEventLog === false" class="notificationSummaryPropertyEmailPropLabel" i18n="common.notifications.EmailBodyLabel"></div>
+                <div ng-if="vm.uiData.deliveryAction.isEmail && vm.uiData.deliveryAction.isEventLog" class="notificationSummaryPropertyEmailPropLabel" i18n="common.notifications.EmailAndWindowsEventLogMessageLabel_clean"></div>
+                <span class="notificationSummaryPropertyEmailMessage">{{vm.uiData.messages.emailBody}}</span>
+            </span>
+        </div>
+    </div>
+</div>
