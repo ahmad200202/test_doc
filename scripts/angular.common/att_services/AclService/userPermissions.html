@@ -1,0 +1,62 @@
+<div ng-controller="AclCtrl" class="UserPermissionsView" ng-class="{allowActions : vm.config.showActionBar}">
+    <div id="explanatoryTexts" ng-if="vm.config.explanatoryTextsTitle.length > 0">
+        <div>
+            <span class="bold">{{vm.config.explanatoryTextsTitle | i18n}}</span>
+        </div>
+        <div>
+            <span class="sectionContent">{{vm.config.explanatoryTextsContent | i18n}}</span>
+            <span ng-if="vm.config.explanatoryTextsContentMidNote != null" class="sectionContentPreSecondNote">{{vm.config.explanatoryTextsContentMidNote | i18n}}</span>
+            <span ng-if="vm.config.explanatoryTextsContentAfterNote != null" class="sectionContentSecond">{{vm.config.explanatoryTextsContentAfterNote | i18n}}</span>
+        </div>
+    </div>
+    <div id="inheritancePanel" ng-if="!vm.acl.isRootAcl">
+        <div id="inheritanceText">
+            <span ng-if="!vm.acl.enable_inheritance" class="sectionContent"
+                  authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}"
+                  att-custom-tooltip custom-tooltip-text="{{vm.config.inheritancePanelText.text.enable}}">{{vm.config.inheritancePanelText.text.enable}}</span>
+            <span ng-if="vm.acl.enable_inheritance" class="sectionContent"
+                  authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}"
+                  att-custom-tooltip custom-tooltip-text="{{vm.config.inheritancePanelText.text.disable}}">{{vm.config.inheritancePanelText.text.disable}}</span>
+        </div>
+        <div id="inheritanceSwitchState">
+            <div class="inheritanceSwitchBtn" ng-if="!vm.acl.enable_inheritance"
+                 att-custom-tooltip custom-tooltip-text="{{vm.config.inheritancePanelText.buttonTooltip.currentlyDisabled}}">
+                <att-button button-class="modal-attBtn"
+                            authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}"
+                            label="common.acl.ActionBar.EnableInheritanceText_Dots"        ng-click="onEnableInheritance()"        ></att-button>
+            </div>
+            <div class="inheritanceSwitchBtn" ng-if="vm.acl.enable_inheritance"
+                 att-custom-tooltip custom-tooltip-text="{{vm.config.inheritancePanelText.buttonTooltip.currentlyEnabled}}">
+                <att-button button-class="modal-attBtn"
+                            authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}"
+                            label="common.acl.ActionBar.DisableInheritanceText_Dots"       ng-click="onDisableInheritance()"       ></att-button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="actionBar menuBarStyle" ng-if="vm.config.showActionBar" >
+        <div style="height: 100%; float: left">
+            <att-button type="glyph" glyph-class="att-glyph icon-gl-Plus"   authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}" label="common.acl.ActionBar.AddUserGroup_Text_Dots"    ng-click="onAddUserGroup()"></att-button>
+        </div>
+
+        <div att-custom-tooltip custom-tooltip-text="{{disabledDeleteBtnTooltip}}" style="height: 100%; float: left">
+            <att-button type="glyph" glyph-class="att-glyph icon-gl-Delete" label="common.acl.ActionBar.RemoveGroup_Text_Dots"
+                        authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}" ng-disabled="isDeleteDisabled()"
+                        ng-click="onRemoveUserGroup()"></att-button>
+        </div>
+
+        <div att-custom-tooltip custom-tooltip-text="{{disabledRestoreBtnTooltip}}" style="height: 100%; float: left">
+            <att-button type="glyph" glyph-class="att-glyph icon-gl-revert"
+                        authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}"
+                        label="common.acl.ActionBar.Restore_Text"
+                        ng-click="onRestoreUserGroup()"
+                        ng-if="!vm.acl.isRootAcl" ng-disabled="isRestoreDisabled()"></att-button>
+        </div>
+
+    </div>
+
+    <div ng-if="vm.acl != null" class="content open" ng-class="{'effective' : vm.config.showEffectivePermissions, 'explanatoryTextsExist': (vm.config.explanatoryTextsTitle.length > 0)}">
+        <div style="height: 100%;width: 100%;" ng-include src="'scripts/angular.common/att_services/AclService/userPermissionsList.html'"></div>
+    </div>
+</div>

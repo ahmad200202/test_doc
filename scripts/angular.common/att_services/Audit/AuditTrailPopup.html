@@ -1,0 +1,32 @@
+<div class="H100W100 AuditTrailContainer" ng-controller="AuditTrailPopupCtrl">
+    <form style="height: 90%" name="auditTrailForm" form-validation model-to-validate="vm">
+        <h4 style="display: block; margin-bottom: 5px; font-weight: bold;" i18n="common.audit.GenerateCSVFile"></h4>
+        <div class="row form-group" style="margin-top: 10px">
+            <label class="control-label TimeRangeLabel" i18n="common.audit.TimeRange"></label>
+            <att-select-list id="timeFrameSelectList" source-array="vm.timeFrameList"
+                             model="vm.timeFrame"
+                             prop="displayName"
+                             allow-search="false"
+                             css-class="timeFrameSelectList"
+                             on-item-selected="timeFrameSelected(item)">
+            </att-select-list>
+        </div>
+        <div class="row form-group" ng-if="vm.timeFrame.name=='custom'">
+            <label class="control-label TimeRangeLabel" i18n="common.audit.TimeRangeFrom"></label>
+            <att-date-time-picker input-name="inputFromDate" append-to-body="true" max-date="vm.maxDate" data="vm.fromDate" min-date="vm.minFromDate" ng-required="true" minute-step="1"
+                                  hide-time="false" display-seconds="false" format-date="MMM-dd-yyyy" is-date-read-only="true">
+            </att-date-time-picker>
+        </div>
+        <div class="row form-group" ng-if="vm.timeFrame.name=='custom'">
+            <label class="control-label TimeRangeLabel" i18n="common.audit.TimeRangeTo"></label>
+            <att-date-time-picker input-name="inputToDate" append-to-body="true" max-date="vm.maxDate" data="vm.toDate" min-date="vm.fromDate" ng-required="true" minute-step="1"
+                                  hide-time="false" display-seconds="false" format-date="MMM-dd-yyyy" is-date-read-only="true">
+            </att-date-time-picker>
+        </div>
+
+        <div>
+            <label style="margin-top: 10px;" id="auditTrailUTCMessage" i18n="common.audit.UTCMessage"></label>
+        </div>
+
+    </form>
+</div>

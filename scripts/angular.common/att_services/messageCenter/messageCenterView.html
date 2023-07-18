@@ -1,0 +1,207 @@
+ <div class="messageCenterView DarkTheme" ng-controller="attMessageCenterCtrl">
+
+    <div class="messageCenterOpenedView {{mcData.mcUserPrefs.mode}}" >
+        <div class="messagesCenterFullViewHeader">
+
+            <div ng-if="mcData.systemSelection.appPerspective == ManagerConts.Perspective.Analytics">
+                <div i18n="common.messageCenter.ShowingMessagesForAll" class="radioBtnsPreLine"></div>
+            </div>
+
+            <div ng-if="mcData.systemSelection.appPerspective != ManagerConts.Perspective.Analytics">
+                <div i18n="common.messageCenter.ShowingMessagesFor" class="radioBtnsPreLine"></div>
+                <div class="mcRadioWrap">
+                    <att-radio-button label="common.messageCenter.AllSystem"
+                                      ng-model="mcData.mcUserPrefs.messagesContext"
+                                      value="MessagesCenterConstants.messagesContext.All"
+                                      class-wrap="messagesContextRB"
+                                      input-id="messagesContextAllRB"
+                                      ng-change="messagesContextRadioBtnChanged()">
+                    </att-radio-button>
+                    <div class="messagesCountWrapper" ng-if="mcIsSpecific !== true">
+                    </div>
+                </div>
+                <div class="mcRadioWrap">
+                    <att-radio-button label="{{'common.messageCenter.Selected' | i18n }} {{mcData.systemSelection.appPerspective}}"
+                                      ng-model="mcData.mcUserPrefs.messagesContext"
+                                      value="MessagesCenterConstants.messagesContext.Specific"
+                                      class-wrap="messagesContextRB"
+                                      input-id="messagesContextSpecificRB"
+                                      ng-change="messagesContextRadioBtnChanged()">
+                    </att-radio-button>
+                    <div class="messagesCountWrapper" ng-if="isSpecificMode()">
+                        <span class="selectedSystemObjectText" att-custom-tooltip strict-text="{{mcData.systemSelection.displayTextToolTip}}">{{mcData.systemSelection.displayText}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mcViewModeBtnsWrap">
+                <span class="mcViewModeBtn" ng-click="mcChangeViewMode(MessagesCenterConstants.mode.CLOSED)" style="margin-right: 10px;">
+                    <span class="att-glyph icon-gl-min" title="{{'common.base.Minimize' | i18n }}"></span>
+                </span>
+                <span class="mcViewModeBtn" ng-click="mcChangeViewMode(MessagesCenterConstants.mode.MID)" ng-if="mcData.mcUserPrefs.mode != MessagesCenterConstants.mode.MID">
+                    <span class="att-glyph icon-gl-restore" title="{{'common.messageCenter.RestoreDown' | i18n }}"></span>
+                </span>
+                <span class="mcViewModeBtn" ng-click="mcChangeViewMode(MessagesCenterConstants.mode.FULL)" ng-if="mcData.mcUserPrefs.mode != MessagesCenterConstants.mode.FULL">
+                    <span class="att-glyph icon-gl-maximize" title="{{'common.base.Maximize' | i18n }}"></span>
+                </span>
+            </div>
+
+
+        </div>
+
+        <div class="messagesCenterActionsPanel">
+            <att-select-list id="timeFrameSelectList" source-array="mcData.timeFrameList"
+                             model="mcData.mcUserPrefs.timeFrame"
+                             prop="displayName"
+                             allow-search="false"
+                             css-class="timeFrameSelectList"
+                             on-item-selected="timeFrameSelected(item)">
+            </att-select-list>
+
+
+            <div class="filterMessagesCB">
+                <att-checkbox label="common.base.All" ng-model="mcData.mcUserPrefs.allMessagesFilterBool" ng-change="mainSeverityCheckBoxChanged()"></att-checkbox>
+                <label>({{mcData.counters.allFilters | number}})</label>
+            </div>
+
+            <div class="filterMessagesCB">
+                <div class="roundGrayWrap errorWrap">
+                    <att-checkbox label="" ng-model="mcData.mcUserPrefs.errorsFilterBool" ng-change="onSeverityCheckBoxChanged()"></att-checkbox>
+                </div>
+                <div class="filterLabelWrap">
+                    <span i18n="common.messageCenter.CB_Label_Errors"></span>
+                    <span> ({{mcData.counters.errors | number}})</span>
+                </div>
+            </div>
+
+            <div class="filterMessagesCB">
+                <div class="roundGrayWrap WarningsWrap">
+                    <att-checkbox label="" ng-model="mcData.mcUserPrefs.warningsFilterBool" ng-change="onSeverityCheckBoxChanged()"></att-checkbox>
+                </div>
+                <div class="filterLabelWrap">
+                    <span i18n="common.messageCenter.CB_Label_Warnings"></span>
+                    <span> ({{mcData.counters.warnings | number}})</span>
+                </div>
+            </div>
+
+            <div class="filterMessagesCB">
+                <div class="roundGrayWrap infoWrap">
+                    <att-checkbox label="" ng-model="mcData.mcUserPrefs.infoFilterBool" ng-change="onSeverityCheckBoxChanged()"></att-checkbox>
+                </div>
+                <div class="filterLabelWrap">
+                    <span i18n="common.messageCenter.CB_Label_Info"></span>
+                    <span> ({{mcData.counters.infos | number}})</span>
+                </div>
+            </div>
+
+            <div class="filterMessagesCB">
+                <div class="roundGrayWrap notificationWrap">
+                    <att-checkbox label="" ng-model="mcData.mcUserPrefs.notificationFilterBool" ng-change="onSeverityCheckBoxChanged()"></att-checkbox>
+                </div>
+                <div class="filterLabelWrap">
+                    <span i18n="common.messageCenter.CB_Label_Notifications"></span>
+                    <span> ({{mcData.counters.notifications | number}})</span>
+                </div>
+            </div>
+            <div class="separator-vertical"></div>
+
+            <!--<div class="filterMessagesCB">-->
+                <!--<att-checkbox label="common.messageCenter.wrapMessageCB" ng-model="mcData.mcUserPrefs.wrapMessageBool" ng-change="wrapMessagesCBChanged()"></att-checkbox>-->
+            <!--</div>-->
+            <!--<div class="separator-vertical"></div>-->
+
+            <div class="miniActionBar">
+                <div class="miniIconWrap" att-custom-tooltip strict-text="{{viewLogToolTip}}">
+                    <div class="singleMcBtnWrap" ng-if="mcData.useApiFunctions.onViewMessageLogBool && mcData.aclConf.callerRole != null" authorized-action="{{mcData.aclConf.taskLogMethodName}}" caller-role="{{mcData.aclConf.callerRole}}">
+                        <span class="btnIconOnly att-glyph icon-gl-Log" ng-click="onMC_ApiViewMessageLog()"  ng-disabled="(isViewLogBtnDisabled || mcGridApi.info.displayedItemsLength == 0)" ng-class="{'disabled': (isViewLogBtnDisabled || mcGridApi.info.displayedItemsLength == 0)}"></span>
+                    </div>
+                </div>
+                <div class="miniIconWrap" att-custom-tooltip custom-tooltip-text="common.messageCenter.ViewTask">
+                    <span class="btnIconOnly att-glyph icon-gl-task" ng-click="onMC_ApiOpenTaskTab()"  ng-disabled="(isViewTaskBtnDisabled || mcGridApi.info.displayedItemsLength == 0)" ng-class="{'disabled': (isViewTaskBtnDisabled || mcGridApi.info.displayedItemsLength == 0)}"></span>
+                </div>
+                <div class="miniIconWrap" att-custom-tooltip custom-tooltip-text="common.messageCenter.ViewServer">
+                    <span class="btnIconOnly att-glyph icon-gl-server" ng-click="onMC_ApiViewServer()"  ng-disabled="(isViewServerBtnDisabled || mcGridApi.info.displayedItemsLength == 0)" ng-class="{'disabled': (isViewServerBtnDisabled || mcGridApi.info.displayedItemsLength == 0)}"></span>
+                </div>
+                <div class="miniIconWrap" att-custom-tooltip custom-tooltip-text="common.base.ExportToTSV">
+                    <span class="btnIconOnly att-glyph icon-gl-export" ng-click="onMC_ApiExportToTSV()"></span>
+                </div>
+
+
+                <div class="singleMcBtnWrap" ng-if="mcData.useApiFunctions.onViewMessageLogBool && mcData.aclConf.callerRole != null" authorized-action="{{mcData.aclConf.taskLogMethodName}}" caller-role="{{mcData.aclConf.callerRole}}" att-custom-tooltip strict-text="{{viewLogToolTip}}">
+                    <att-button class="hideOnSmlScreen" type="glyph" glyph-class="att-glyph icon-gl-Log" label="common.messageCenter.ViewLogs" on-click="onMC_ApiViewMessageLog()" ng-disabled="(isViewLogBtnDisabled || mcGridApi.info.displayedItemsLength == 0)"></att-button>
+                </div>
+                <att-button class="hideOnSmlScreen" type="glyph" glyph-class="att-glyph icon-gl-task"   label="common.messageCenter.ViewTask" on-click="onMC_ApiOpenTaskTab()" ng-disabled="(isViewTaskBtnDisabled || mcGridApi.info.displayedItemsLength == 0)"></att-button>
+                <att-button class="hideOnSmlScreen" type="glyph" glyph-class="att-glyph icon-gl-server" label="common.messageCenter.ViewServer" on-click="onMC_ApiViewServer()" ng-disabled="(isViewServerBtnDisabled || mcGridApi.info.displayedItemsLength == 0)"></att-button>
+                <att-button class="hideOnSmlScreen" type="glyph" glyph-class="att-glyph icon-gl-export" label="common.base.ExportToTSV" title="{{::'common.base.ExportToTSVToolTip' | i18n }}"on-click="onMC_ApiExportToTSV()"></att-button>
+            </div>
+
+
+            <div class="separator-vertical"></div>
+            <div class="rightBtnWrapForShowHide" style="float: left;">
+                <att-button class="showHideButton modal-attBtn mcShowLowAndMidRezBtn firstBtn" on-click="showMessagesClicked()" label="common.messageCenter.Show" title="{{'common.messageCenter.ShowAllMessages' | i18n }}" ng-disabled="mcData.mcUserPrefs.hideIsActive == false"></att-button>
+                <att-button class="showHideButton modal-attBtn mcShowLowAndMidRezBtn" on-click="hideMessagesClicked()" label="common.messageCenter.Hide" title="{{'common.messageCenter.HideCurrentMessages' | i18n }}" ng-disabled="mcIsSpecific === true"></att-button>
+
+                <att-button class="showHideButton modal-attBtn mcHideLowAndMidRezBtn firstBtn" on-click="showMessagesClicked()" label="common.messageCenter.ShowAllMessages" ng-disabled="mcData.mcUserPrefs.hideIsActive == false"></att-button>
+                <att-button class="showHideButton modal-attBtn mcHideLowAndMidRezBtn" on-click="hideMessagesClicked()" label="common.messageCenter.HideCurrentMessages" ng-disabled="mcIsSpecific === true"></att-button>
+                <div ng-if="mcData.mcUserPrefs.hideIsActive == true">
+                    <span class="hideMessagesIndicationText">{{mcData.mcUserPrefs.hideMessagesByUserTime}}</span>
+                </div>
+            </div>
+
+            <div class="searchBar" style="float: right;">
+                <att-search class="mcGridSearch" ng-model="mcData.searchText" ng-model-options="{debounce:350}" place-holder="{{'common.messageCenter.SearchMessages' | i18n}}"></att-search>
+            </div>
+
+        </div>
+
+        <div class="McLoaderWrap" ng-if="mcData.mcShowLoaderBool == true">
+            <att-loader loader-type="ball-clip-rotate-multiple" loader-text="" style="width:60px; height:60px;"></att-loader>
+        </div>
+        <div class="noMessagesFoundWrap" ng-if="showNoMessagesToShowForTimeframe()">
+            <span ng-if="mcData.mcUserPrefs.allMessagesFilterBool == true" class="noMessagesFoundText" i18n="common.messageCenter.NoMessagesToShowForTimeframe"></span>
+            <span ng-if="mcData.mcUserPrefs.allMessagesFilterBool == false" class="noMessagesFoundText" i18n="common.messageCenter.NoMessagesToShowForTimeframeAndSeverityLevels"></span>
+        </div>
+        <div class="noMessagesFoundWrap" ng-if="showNoSpecificItemSelected()">
+            <span class="noMessagesFoundText" i18n="common.messageCenter.NoSpecificItemSelected"></span>
+        </div>
+
+
+        <div id="MCMessagesGrid" grid-id="MCMessagesGrid" att-grid data="mcData.filteredDisplayMessages"
+             config="gridConfigattGridConfig"
+             api="mcGridApi"
+             filter="mcData.searchText"
+             order-predicate="-audit.original_time"
+             identifier="position"
+             enable-selection="true"
+             resizable="true"
+             multiple-selection="false"
+             secondary-sort-prop = "position"
+             ng-class="{'wrapCell': mcData.mcUserPrefs.wrapMessageBool}"
+             columns-in-search="MCcolumnsInSearch"
+             export-file-name="AppMessages">
+
+            <column css-class="severityIconCol" model-prop="displaySeverity" display-name="Severity">
+                <span class="severityIcon {{rowData.displaySeverity}}"  att-custom-tooltip strict-text="{{rowData.displaySeverityToolTip}}"></span>
+            </column>
+
+            <column display-name="Time" css-class="timeCol"  model-prop="displayTime" sort-prop="audit.original_time" is-mandatory="true">
+                <label class="ellipsisStyle simpleTextCell" att-custom-tooltip strict-text="{{rowData.displayTime}}">{{rowData.displayTime}}</label>
+            </column>
+            <column display-name="Reported By" model-prop="audit.reporting_node" css-class="reportedByCol"></column>
+            <column display-name="Server"   model-prop="audit.server_name" css-class="serverCol"></column>
+            <column display-name="Task" model-prop="audit.task_name" css-class="taskCol"></column>
+            <column display-name="Table" model-prop="audit.table_name" hidden="true"></column>
+            <column display-name="Type" model-prop="audit.event" css-class="typeCol"></column>
+            <column display-name="Message" model-prop="audit.message" is-mandatory="true">
+                <label att-custom-tooltip strict-text="{{rowData.audit.message.replaceAll('\n', '<BR>')}}">{{rowData.audit.message}}</label>
+            </column>
+            <column display-name="Error Code" model-prop="audit.status_code" css-class="errCodeCol"></column>
+            <column display-name="ID" model-prop="position" css-class="idCol" hidden="true"></column>
+        </div>
+
+        <div class="itemsCountWrap">
+            <span class="itemCountBySearch">{{mcGridApi.info.displayedItemsLength | number}} <span class="itemsCountText" i18n="common.messageCenter.Messages"></span></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="gridSearchBar">
+  <att-search ng-model="search_table" place-holder="Search"></att-search>
+</div>
+<div class="grid">
+  <div att-grid data="ExpressionGroups[selectionData.selected_group_index].group_items[0].items"
+       class="H100W100"
+       ng-init="isr = -1"
+       enable-selection="true"
+       fixed-header="true"
+       filter="search_table"
+       show-header="true"
+       api="TableApi">
+      <column model-prop="display_name" display-name="Attribute"></column>
+      <column model-prop="name" display-name="Type">
+          <div ng-mouseover="isr = 1" ng-mouseleave="isr = -1" class="H100W100" style="float: left;">
+              <label class="tableItem" title="{{rowData.display_type}}">{{rowData.display_type}}</label>
+              <span ng-if="isr == 1" ng-click="parentCtrl.onAddTableItem($event, rowData);" style="float: right;width: 20px;height: 20px; padding: 0"  class="listRightImage"></span>
+          </div>
+      </column>
+  </div>
+</div>

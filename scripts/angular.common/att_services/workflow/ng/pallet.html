@@ -1,0 +1,41 @@
+<div class="palletSearch">
+    <att-search ng-model="vm.availableExecFilter.name"  style="margin-top: 7px;width: 100%;" ></att-search>
+</div>
+<div class="mainPalletContent">
+    <div class="Heading">
+        <div class="tasks">
+            <span class="bold" style="line-height: 30px;">Tasks</span>
+        </div>
+        <div class="sortBy">
+            <span style="width: 68px;float: right;"><att-select-list model="sortBy" source-array="execProps" prop="propName"></att-select-list></span>
+            <span style="float: right;margin-right: 4px;line-height: 30px;">Sort by:</span>
+        </div>
+    </div>
+    <div class="TasksAndWorkflowElements">
+        <ul class="List">
+            <li class="PalletItem" ng-repeat="item in vm.availableExecutors|filter:vm.availableExecFilter | orderBy:sortBy.prop"
+                jqyoui-draggable="{placeholder:'keep', animate:true,onStop:'onExecDragStop'}"
+                data-drag="true"
+                title="{{item.name}}"
+                data-jqyoui-options="{helper: 'clone'}">
+                <span class="palletItemIcon {{item.type}}"></span>
+                <span class="palletItemText ellipsisStyle">{{item.name}}</span>
+            </li>
+        </ul>
+        <div class="Heading">
+            <span class="bold" style="line-height: 30px;">Workflow Elements</span>
+        </div>
+        <ul class="List">
+            <li class="PalletItem" ng-repeat="item in vm.workflowElements|filter:vm.availableExecFilter"
+                jqyoui-draggable="{placeholder:'keep', animate:true,onStop:'onWorkflowElementsDragStop'}"
+                data-drag="true"
+                title="{{item.name}}"
+                data-jqyoui-options="{helper: 'clone'}">
+                <span class="palletItemIcon {{item.type+'_'+ item.direction}}"></span>
+                <span class="palletItemText ellipsisStyle">{{item.name}}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+

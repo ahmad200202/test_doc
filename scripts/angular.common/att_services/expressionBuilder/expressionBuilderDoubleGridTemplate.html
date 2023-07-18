@@ -1,0 +1,60 @@
+<div class="H100W100 double_grid" >
+    <div class="double_grid_top">
+        <div class="double_grid_header">
+            <label style="float: left">{{ExpressionGroups[selectionData.selected_group_index].group_items[0].name}}</label>
+            <div class="searchInputWrap" style="float: right;">
+                <att-search ng-model="group_items_1_search"></att-search>
+            </div>
+        </div>
+        <div class="double_grid_content">
+            <div att-grid
+                 data="ExpressionGroups[selectionData.selected_group_index].group_items[0].items"
+                 showHeader="false"
+                 ng-init="isr1 = -1"
+                 filter="group_items_1_search"
+                 enable-selection="true"
+                 fixed-header="true"
+                 multiple-selection="false"
+                 api="TableApi">
+                <column display-name="Column"      model-prop="name">
+                    <span title="{{rowData.name}}">{{rowData.name}}</span>
+                </column>
+                <column model-prop="display_type" display-name="Type">
+                    <div ng-mouseover="isr1 = 1" ng-mouseleave="isr1 = -1" class="H100W100" style="float: left;">
+                        <label class="tableItem" title="{{rowData.display_type}}">{{rowData.display_type}}</label>
+                        <span ng-if="isr1 == 1" ng-click="parentCtrl.onAddTableItem($event, rowData);" style="float: right;width: 20px;height: 20px; padding: 0;margin-top: 6px;"  class="listRightImage"></span>
+                    </div>
+                </column>
+            </div>
+        </div>
+    </div>
+    <div class="double_grid_bottom">
+        <div class="double_grid_header">
+            <label style="float: left">{{ExpressionGroups[selectionData.selected_group_index].group_items[1].name}}</label>
+            <div class="searchInputWrap" style="float: right;">
+                <att-search ng-model="group_items_2_search"></att-search>
+            </div>
+        </div>
+        <div class="double_grid_content">
+            <div att-grid
+                 data="ExpressionGroups[selectionData.selected_group_index].group_items[1].items"
+                 showHeader="false"
+                 ng-init="isr2 = -1"
+                 filter="group_items_2_search"
+                 enable-selection="true"
+                 fixed-header="true"
+                 multiple-selection="false"
+                 api="TableApi">
+                <column display-name="Column"        css-class="largeCol2"   model-prop="name">
+                    <span title="{{rowData.name}}">{{rowData.name}}</span>
+                </column>
+                <column model-prop="display_type" display-name="Type">
+                    <div ng-mouseover="isr2 = 1" ng-mouseleave="isr2 = -1" class="H100W100" style="float: left;">
+                        <label class="tableItem" title="{{rowData.display_type}}">{{rowData.display_type}}</label>
+                        <span ng-if="isr2 == 1" ng-click="parentCtrl.onAddTableItem($event, rowData);" style="float: right;width: 20px;height: 20px; padding: 0;margin-top: 6px;"  class="listRightImage"></span>
+                    </div>
+                </column>
+            </div>
+        </div>
+    </div>
+</div>

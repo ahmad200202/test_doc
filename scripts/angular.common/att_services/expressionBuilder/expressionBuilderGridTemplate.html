@@ -1,0 +1,36 @@
+<div class="gridSearchBar" style="background-color: #FFFFFF;">
+  <att-search ng-model="search_table" place-holder="Search"></att-search>
+</div>
+<div class="grid" ng-class="{showDescription: showHeaderDescription && selectionData.selected_group_index == 1 && TableApi.selectedItems.length > 0}" style="background-color: #FFFFFF;">
+  <div att-grid data="ExpressionGroups[selectionData.selected_group_index].group_items[0].items"
+       class="H100W100"
+       ng-init="isr = -1"
+       enable-selection="true"
+       fixed-header="true"
+       filter="search_table"
+       show-header="true"
+       order-predicate="'path'"
+       secondary-sort-prop="'name'"
+       api="TableApi">
+      <column model-prop="path"             display-name="Path"     hidden="!hasPath"></column>
+      <column model-prop="name"             display-name="Column"></column>
+      <column model-prop="display_type"     display-name="Type"     css-class="medPlusCol2">
+          <div ng-mouseover="isr = 1" ng-mouseleave="isr = -1" class="H100W100" style="float: left;">
+              <label class="tableItem" title="{{rowData.display_type}}">{{rowData.display_type}}</label>
+              <span ng-if="isr == 1" ng-click="parentCtrl.onAddTableItem($event, rowData);" style="float: right;width: 20px;height: 20px; padding: 0;margin-top: 6px;"  class="listRightImage"></span>
+          </div>
+      </column>
+      <column model-prop="display_sub_type" display-name="{{ 'common.base.SubType' | i18n }}"></column>
+  </div>
+</div>
+<div id="columnHeaderDescription" ng-if="showHeaderDescription && TableApi.selectedItems.length == 1 && selectionData.selected_group_index == 1">
+    <div>
+        <span class="ellipsisStyle" style="width: 100%">
+            <span class="bold">{{'common.base.Description' | i18n}} -</span>
+            {{TableApi.selectedItems[0].name}}
+        </span>
+    </div>
+    <div id="headerDescriptionText" class="scrollable selectable">
+        <span class="H100W100">{{TableApi.selectedItems[0].description}}</span>
+    </div>
+</div>

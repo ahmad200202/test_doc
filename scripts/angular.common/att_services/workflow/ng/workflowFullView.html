@@ -1,0 +1,36 @@
+<div class="workflowContainerPopup WorkflowFullView H100W100" ng-controller="WorkflowFullViewCtrl">
+    <div class="mainActionBar mainLeftRightPadding manage" style="height: 40px">
+      <div style="float: left">
+          <att-button  on-click="onSaveWorkflow(true)" type="glyph" glyph-class="att-glyph icon-gl-Save"            label="projectmonitor.Workflow.Save"         ng-if="!vm.options.isDefaultWorkflow && !vm.isMonitoring"></att-button>
+          <att-button on-click="onDiscardWorkflow()"   type="glyph" glyph-class="att-glyph icon-gl-reload"      label="projectmonitor.Workflow.Discard"      ng-if="!vm.options.isDefaultWorkflow && !vm.isMonitoring"></att-button>
+          <att-button  on-click="onValidateWorkflow()" type="glyph" glyph-class="att-glyph icon-gl-select-table"    label="projectmonitor.Workflow.ValidateFlow" ng-if="!vm.options.isDefaultWorkflow && !vm.isMonitoring"></att-button>
+          <!--att-button  on-click=" "                 type="glyph" glyph-class="att-glyph icon-gl-Open"            label="projectmonitor.Workflow.Open" ></att-button-->
+          <!--<att-button  on-click=" "                type="glyph" glyph-class="att-glyph icon-gl-Plus"            label="projectmonitor.Workflow.Add" ></att-button>-->
+          <att-button  on-click="onRun()"              type="glyph" glyph-class="att-glyph icon-gl-populate"        label="common.base.Run" ng-disabled="!canRun()" title="{{vm.ui_prop_can_populate_message}}"></att-button>
+          <att-button  on-click="onDeleteSelected()"   type="glyph" glyph-class="att-glyph icon-gl-Delete"          label="projectmonitor.Workflow.Delete"  ng-disabled="vm.appInterface.selectedItems.length==0" ng-if="!vm.options.isDefaultWorkflow && !vm.isMonitoring" ></att-button>
+      </div>
+        <att-mode-btns is-designer-active="!vm.isMonitoring"
+                       is-monitor-active="vm.isMonitoring"
+                       label-designer="Designer"
+                       label-monitor="Monitor"
+                       css-class="{{vm.last_work_flow_executor_id == 0 || vm.last_work_flow_executor_id == null ? 'disabled' : ''}}"
+                       on-mode-click="onChangeViewMode(mode)">
+        </att-mode-btns>
+    </div>
+    <div class="WorkflowPopupGraphContainer " ng-class="{palletCollapsed:!expanded ,palletExpanded:expanded && !vm.isMonitoring}">
+        <div class="workflowInnerGraphContainer">
+            <div ng-include style="height: 100%;width: 100%;" src="workflowSrc"></div>
+        </div>
+        <div ng-if="!vm.isMonitoring" class="WorkflowPalletCtrl">
+            <div class="CollapsiblePanelHeader">
+                <span></span>
+                <span class="expandCollapseContainer rightPanel" >
+                    <att-button on-click="expandCollapsePallet()" type="glyph" glyph-class="att-glyph expandCollapseIcon" title='{{!expanded?"Expand":"Collapse"}}' ng-class="{'expanded':expanded,ExpandBtn:true}"></att-button>
+                </span>
+            </div>
+            <div class="CollapsiblePanelContent"  ng-show="!vm.isMonitoring && expanded" >
+                <div class="PalletContainer" ng-include="'scripts/angular.common/att_services/workflow/ng/pallet.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>

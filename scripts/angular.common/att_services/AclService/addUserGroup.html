@@ -1,0 +1,31 @@
+<div class="H100W100 mainLeftRightPadding mainTopBottomPadding" style="padding-bottom: 0;padding-right: 0;">
+    <form form-validation class="H100W100" name="newUserGroupForm"  validation-override="vm.validationOverride"  model-to-validate="vm.toAdd" style="overflow-y: auto;padding-right: 20px;">
+        <div class="form-row row">
+            <div class="col-md-3" style="padding-left: 0;padding-right: 0">
+            </div>
+            <div class="col-md-9" style="padding-left: 0;">
+                <att-radio-button label="User" group-name="usersGroups" ng-model="vm.toAdd.itemType" value="'USER'" input-id="user"></att-radio-button>
+                <att-radio-button label="Group" group-name="usersGroups" ng-model="vm.toAdd.itemType" style="margin-left: 20px" value="'GROUP'" input-id="group"></att-radio-button>
+            </div>
+        </div>
+        <div class="form-row row">
+            <div class="col-md-3" style="padding-left: 0;padding-right: 0">
+                <label for="name" class="control-label" style="padding-top: 3px;width:45px">Name:</label>
+                <att-info-tip info-text="{{vm.isSaml ? 'common.acl.samlNameValidationInstruction' : 'common.acl.nameValidationInstruction'}}"></att-info-tip>
+            </div>
+            <div class="col-md-9" style="padding-left: 0;">
+                <att-text-input input-id="name" name="name" class="form-control" errLabel="Name"
+                                spellcheck="false"
+                                is-bound="false"
+                                select-on-load
+                                unique-names-list="vm.list"
+                                unique-prop="name"
+                                case-sensitive="false"
+                                validusername-error-message="Name is invalid."
+                                ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+                                ng-model="vm.toAdd.name">
+                </att-text-input>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+<div class="expressionBuilderEditor">
+    <div class="row header">
+        <div class="itemCounter" style="font-size: 12px">1</div>
+        <label class="bold" style="float: left;">Build Expression</label>
+    </div>
+    <div class="row actionBar" style="width: 100%">
+        <button class="attBtn svgButton modal-attBtn" style="line-height: 1px; margin-top: 0px;" ng-click="onAddActionBarItem(btn)" ng-repeat="btn in ExpressionEditorAllowedOperators"> {{btn}}</button>
+
+        <div style="float: right;">
+            <button title="Undo" ng-click="onEditorCommand('Undo')" class="attBtn svgButton modal-attBtn" style="line-height: 1px; margin: 0 0 0 4px;"><span class="glyphicons glyphicons-undo"></span></button>
+            <button title="Redo" ng-click="onEditorCommand('Redo')" class="attBtn svgButton modal-attBtn" style="line-height: 1px; margin: 0 0 0 4px;"><span class="glyphicons glyphicons-redo"></span></button>
+        </div>
+    </div>
+    <div class="editorWrapper">
+        <textarea ng-model="Expression" style="height: 100px;width: 100%;overflow-y: scroll" ng-change="onChange(Expression)"  ui-codemirror="{ onLoad : codemirrorLoaded }" ui-codemirror-opts="editorOptions" > </textarea>
+    </div>
+</div>
+<div class="expressionBuilderEvaluate">
+    <div class="row actionBar">
+        <div class="itemCounter" style="font-size: 12px">2</div>
+        <label class="bold" style="float: left;">Parse Expression</label>
+        <button class="attBtn svgButton modal-attBtn expressionBuilderButton" ng-click="onDescribeExpression()" ng-disabled="Expression == ''" style="float: right;width: 110px;margin-right: 0;">{{buttons_texts.parse}}</button>
+    </div>
+    <div class="evaluateTable" render-if="use_aliases">
+        <div att-grid
+             data="ExpressionsInfoData.params"
+             order-predicate="parameter">
+            <column model-prop="parameter" display-name="Parameter">
+                <att-text-input ng-model="rowData.parameter" ng-change="parentCtrl.paramNameChanged(rowData)" style="width: 100%"></att-text-input>
+            </column>
+            <column model-prop="value"     display-name="Value to Test">
+                <div ng-init="editMode = false" style="width: 100%; height: 100%;">
+                    <div class="expressionWrap">
+                        <att-text-input style="width: 94%; float: left;"  ng-model="rowData['value']" > </att-text-input>
+                    </div>
+                </div>
+            </column>
+        </div>
+    </div>
+</div>
+<div class="expressionBuilderTest">
+    <div class="row actionBar">
+        <div class="itemCounterLast" style="font-size: 12px">3</div>
+        <label class="bold" style="float: left;">Test Expression</label>
+        <button class="attBtn svgButton modal-attBtn expressionBuilderButton"  ng-show="canTestExpression()"                        ng-click="editMode = false; onTestExpression()"     ng-disabled="testExpressionDisabled(true)"  style="float: right;width: 110px;margin-right: 0;">{{buttons_texts.test}}</button>
+        <button class="attBtn svgButton modal-attBtn expressionBuilderButton"  ng-show="canInspectExpression()"                     ng-click="editMode = false; onInspectExpression()"  ng-disabled="testExpressionDisabled(false)"   style="float: right;margin-right: 6px;width: 110px">{{buttons_texts.show_data}}</button>
+        <button class="attBtn svgButton modal-attBtn expressionBuilderButton"  ng-if="buttons_texts.render_expression != null"      ng-click="onRenderExpression()"                     ng-disabled="!canRenderExpression()"    style="float: right;width: 110px;margin-right: 10px;">{{buttons_texts.render_expression}}</button>
+    </div>
+    <div class="testWrapper" style="height:60%">
+        <div class="textAreaFullHeight" ng-class="{'textAreaPartialHeight' : !(ExpressionsInfoData == null || ExpressionsInfoData.message == null || ExpressionsInfoData.message == '')}">
+            <textarea ng-disabled="ExpressionsInfoData == null || ExpressionsInfoData.params == null || ExpressionsInfoData.params.length == 0"  ng-readonly="true" ondrop="return false;" ng-model="EvaluatedExpression" style="width: 100%; height: 100%;"></textarea>
+        </div>
+        <div style="height: 20%" ng-show="!(ExpressionsInfoData == null || ExpressionsInfoData.message == null || ExpressionsInfoData.message == '')">
+            <label att-custom-tooltip ng-hide="ExpressionsInfoData == null || ExpressionsInfoData.message == null || ExpressionsInfoData.message == ''"  custom-tooltip-text="{{ExpressionsInfoData.message}}"  class="ellipsisStyle rColor"  >{{ExpressionsInfoData.message}}</label>
+        </div>
+    </div>
+</div>

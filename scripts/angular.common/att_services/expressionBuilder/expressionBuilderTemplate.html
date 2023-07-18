@@ -1,0 +1,34 @@
+<div class="expressionBuilderView unselectable" ng-controller="att_expression_builder_Ctrl">
+    <div class="left">
+        <div class="expBuilderTabs" data-grp-items="{{ExpressionGroups.length}}">
+            <att-tab-swapper use-user-preferences-service="false" id="expressionBuilderTabSwapper" css-class="expBuilderTabsTopBorder" selected-tab-index="selectedTabIndex">
+                <att-tab tab-title="{{grp.group_name}}" click-tab-function="onGroupItemClick($index)"
+                         tab-css="{{(grp.group_name).split(' ').join('')}}"
+                         ng-repeat="grp in ExpressionGroups track by $index"
+                         ng-class="{'active' : selectionData.selected_group_index == $index }"
+                         text-position="bottom" type="glyph"
+                         label="{{grp.group_name}}">
+
+                </att-tab>
+            </att-tab-swapper>
+        </div>
+        <div class="groupsActions">
+            <div style="height: 100%;" ng-if="ExpressionGroups[selectionData.selected_group_index].group_view_type == 'grid' && ExpressionGroups[selectionData.selected_group_index].group_items.length > 0">
+                <div style="height: 100%; position: relative" ng-include src="'scripts/angular.common/att_services/expressionBuilder/expressionBuilderGridTemplate.html'"></div>
+            </div>
+            <div style="height: 100%;" ng-if="ExpressionGroups[selectionData.selected_group_index].group_view_type == 'split_list' && ExpressionGroups[selectionData.selected_group_index].group_items.length > 0">
+                <div style="height: 100%; background-color: #FFFFFF;" ng-include src="'scripts/angular.common/att_services/expressionBuilder/expressionBuilderSplitListTemplate.html'"></div>
+            </div>
+            <div style="height: 100%;" ng-if="ExpressionGroups[selectionData.selected_group_index].group_view_type == 'single_list' && ExpressionGroups[selectionData.selected_group_index].group_items.length > 0">
+                <div style="height: 100%; background-color: #FFFFFF;" ng-include src="'scripts/angular.common/att_services/expressionBuilder/expressionBuilderSingleListTemplate.html'"></div>
+            </div>
+            <div style="height: 100%;" ng-if="ExpressionGroups[selectionData.selected_group_index].group_view_type == 'double_grid' && ExpressionGroups[selectionData.selected_group_index].group_items.length > 0">
+                <div style="height: 100%; background-color: #FFFFFF;" ng-include src="'scripts/angular.common/att_services/expressionBuilder/expressionBuilderDoubleGridTemplate.html'"></div>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div class="H100W100" ng-if="full_view" ng-include="'scripts/angular.common/att_services/expressionBuilder/expressionBuilderFullView.html'"></div>
+        <div class="H100W100" ng-if="!full_view" ng-include="'scripts/angular.common/att_services/expressionBuilder/expressionBuilderMinimalView.html'"></div>
+    </div>
+</div>

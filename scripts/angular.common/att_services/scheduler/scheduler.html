@@ -1,0 +1,97 @@
+ <div ng-controller="SchedulerCtrl" class="H100W100">
+    <form style="height: 90%">
+        <div class="row form-group">
+            <label class="control-label">Run Job:</label>
+            <att-select-list ng-disabled="!(currentScheduling.isEnabled)"
+                             allow-search="false" style="float: left;" css-class="control-input"
+                             source-array="schedulingTypes"
+                             model="currentScheduling.schedulingType"></att-select-list>
+        </div>
+        <div ng-if="currentScheduling.schedulingType == 'Once'">
+            <div class="row">
+                <label class="control-label">On:</label>
+                <att-date-time-picker
+                        ng-disabled="!(currentScheduling.isEnabled)" append-to-body="true"
+                        data="currentScheduling.runOnceTime"
+                        ng-required="true" minute-step="1"  hide-time="false"
+                        display-seconds="false" format-date="MMM-dd-yyyy"></att-date-time-picker>
+            </div>
+        </div>
+        <div ng-if=" currentScheduling.schedulingType == 'Every'">
+            <div class="row">
+                <div class="control-label" style="height: 28px;"></div>
+                <att-number-stepper ng-disabled="!(currentScheduling.isEnabled)" css-class="control-label" min="1" max="9999999"
+                                    number-data="currentScheduling.interval" ></att-number-stepper>
+                <att-select-list  ng-disabled="!(currentScheduling.isEnabled)" style="padding-top: 2px;margin-left: 4px; width: 110px!important;"
+                                  allow-search="false" css-class="control-input" source-array="runEveryOptions"
+                                  model="currentScheduling.interval_unit"  prop="name"></att-select-list>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <label class="control-label">Start from:</label>
+                <div class="row" style="margin-bottom: 2px;">
+                    <att-radio-button ng-class="{disabled: !(currentScheduling.isEnabled)}" group-name="start_f" input-id="start_form_now"
+                                      ng-model="currentScheduling.startFrom"  value="from_now_str" label="Now">
+                    </att-radio-button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="control-label" style="height: 28px;"></div>
+                <att-radio-button ng-class="{disabled: !(currentScheduling.isEnabled)}" style="float: left;" group-name="start_f" input-id="start_form_date"
+                                  ng-model="currentScheduling.startFrom" value="from_date_str" label="">
+                </att-radio-button>
+                <att-date-time-picker ng-disabled="currentScheduling.startFrom== from_now_str || !(currentScheduling.isEnabled)"
+                                      append-to-body="true" data="currentScheduling.startTime" ng-required="true" minute-step="1"
+                                      hide-time="false" display-seconds="false" format-date="MMM-dd-yyyy">
+                </att-date-time-picker>
+            </div>
+        </div>
+        <div ng-if="currentScheduling.schedulingType == 'Weekly'">
+            <div class="row">
+                <label class="control-label">On:</label>
+                <ul>
+                    <li style="display: inline-block;float: left; margin-right: 2px;" ng-repeat="day in currentScheduling.weekDays track by $index">
+                        <att-checkbox  ng-class="{disabled: !(currentScheduling.isEnabled)}" ng-model="day.is_checked" strict-label="{{day.name.substr(0, 3)}}" value="{{$index}}"> </att-checkbox>
+                    </li>
+                </ul>
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <label class="control-label">At:</label>
+                <att-time-stepper ng-disabled="!(currentScheduling.isEnabled)" data="currentScheduling.date" minute-step="1" display-seconds="false"></att-time-stepper>
+            </div>
+        </div>
+
+        <div ng-if="currentScheduling.schedulingType == 'Daily'">
+            <div class="row">
+                <label class="control-label">At:</label>
+                <att-time-stepper ng-disabled="!(currentScheduling.isEnabled)" data="currentScheduling.date" minute-step="1" display-seconds="false"></att-time-stepper>
+            </div>
+        </div>
+        <div ng-if="currentScheduling.schedulingType == 'Monthly'">
+            <div class="row">
+                <label class="control-label">On:</label>
+                <att-select-list ng-disabled="!(currentScheduling.isEnabled)" allow-search="false" css-class="control-input"
+                                 scroll-limit="35" source-array="monthlyDays"
+                                 model="currentScheduling.monthDay" prop="name"></att-select-list>
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <label class="control-label">At:</label>
+                <att-time-stepper  ng-disabled="!(currentScheduling.isEnabled)"
+                                   data="currentScheduling.date" minute-step="1" display-seconds="false"></att-time-stepper>
+            </div>
+        </div>
+        <div ng-if="currentScheduling.schedulingType == 'Advanced'">
+            <div class="row">
+                <label class="control-label">Cron Expression:</label>
+                <att-text-input class="control-input" ng-disabled="!(currentScheduling.isEnabled)" input-type="text" ng-model="currentScheduling.cronExpression"></att-text-input>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 5px;">
+            <att-checkbox strict-label="Enabled" ng-model="currentScheduling.isEnabled"> </att-checkbox>
+        </div>
+
+    </form>
+    <div style="height: 10%"  ng-if="currentScheduling.schedulingType == 'Advanced'" >
+        <span class="infoSpan gColor" style="font-size: 14px;" >Note: Cron Expression are defined in UTC</span>
+    </div>
+</div>

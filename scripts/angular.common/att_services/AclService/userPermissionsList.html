@@ -1,0 +1,80 @@
+<div ng-controller="AclGridCtrl" class="H100W100" id="userPermissionsListContainer">
+
+    <div ui-layout="{flow:'column'}" ng-if="!isSaml" class="isSamlDiv">
+        <div ng-include="'user_permissions_list_body_1.html'" class="permissionsList" size="70%" min-size="30%" max-size="75%" ng-class="{'noEffectivePermissions' : !vm.config.showEffectivePermissions}"></div>
+        <div ng-include="'user_permissions_list_body_2.html'" class="effectivePermissions" size="30%" ng-class="{'noEffectivePermissions' : !vm.config.showEffectivePermissions}"></div>
+    </div>
+
+    <div ng-if="isSaml" class="isSamlDiv">
+        <div ng-include="'user_permissions_list_body_1.html'" class="permissionsList" size="70%" min-size="30%" max-size="75%" ng-class="{'noEffectivePermissions' : !vm.config.showEffectivePermissions}"></div>
+    </div>
+
+</div>
+<div class="H100W100" render-if="vm.acl == null && vm.errorState ">
+    <span style="font-size: 18px;text-align: center;width: 100%;float: left;margin-top: 15%;" class="infoSpan">{{vm.config.errorMessage}}</span>
+</div>
+
+<script type="text/ng-template" id="user_permissions_list_body_1.html">
+    <div id="abc1" style="width: 100%; height: 100%;">
+        <div id="bottomPanelIndication" ng-if="vm.config.showSaveDiscard" authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}"></div>
+        <div class="UserPermissionsTableContainer" >
+            <div att-grid
+                 grid-id="{{gridId}}" config="gridConfigattGridConfig"
+                 data="vm.acl.usersGroupsList"
+                 secondary-sort-prop="name"
+                 api="vm.aclGridApi"
+                 enable-selection="true">
+                <column model-prop="isGroup" display-name="" css-class="IsGroupColumn">
+                    <span class="AclIcon"    ng-class="{'Group':rowData.isGroup , 'User' : !rowData.isGroup }" title="{{rowData.isGroup ? 'Group' : 'User' }}"></span>
+                </column>
+                <column model-prop="name"      display-name="{{::'common.acl.GridColumns.UserGroup' | i18n}}" css-class="UserGroupColumn"></column>
+                <column model-prop="isInherited" hidden="vm.acl.isRootAcl" display-name="Inherited" css-class="InheritedColumn">
+                    <div style="text-align: center">
+                        <span class="bootstrapGlyphicon" ng-class="{'glyphicon-ok' : rowData.isInherited}"></span>
+                        <span class="bootstrapGlyphicon" ng-class="{'glyphicon-remove' : (!rowData.isInherited)}" style="left: -4px;"></span>
+                    </div>
+                </column>
+                <column model-prop="role"     display-name="{{::'common.acl.GridColumns.AllowPermissions' | i18n}}" css-class="AllowPermissionsColumn"  sort-prop="roleValue"  sub-header-display-groups="permissionGroupsArray">
+                    <div ng-class="{'disabledOverlay': (!parentCtrl.isGridEnabled) }">
+                        <div ui-slider="parentCtrl.slider.options" min="0" max="4" step="1" ng-model="rowData.roleValue"
+                             title="{{parentCtrl.permissionGroupsArray[rowData.roleValue]}}"
+                             att-slider-override override-val="rowData.inheritedRoleValue">
+                        </div>
+                    </div>
+                </column>
+            </div>
+        </div>
+        <div id="bottomActionPanel" ng-if="vm.config.showSaveDiscard" >
+            <div id="buttonsContainer">
+                <att-button button-class="modal-attBtn" authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}" label="common.acl.ActionBar.save" ng-click="onSave()"  ng-disabled="isSaveDiscardDisabled()"></att-button>
+                <att-button button-class="modal-attBtn" authorized-action="{{vm.aclServiceCtx.PutAcl.method}}" caller-role="{{vm.aclServiceCtx.callerRole}}" label="common.acl.ActionBar.discard" ng-click="onDiscard()" ng-disabled="isSaveDiscardDisabled()"></att-button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="user_permissions_list_body_2.html">
+    <div id="xyz1" style="width: 100%; height: 100%;">
+        <div class="EffectivePermissionsContainer">
+            <div>
+                <span class="bold" i18n="common.acl.EffectivePerms"></span>
+            </div>
+            <div>
+                <span style="float:left; width:100%;" i18n="common.acl.GetEffectivePermissions_Instructions_1"></span>
+                <span i18n="common.acl.GetEffectivePermissions_Instructions_2"></span>
+                <span style="margin-top: 8px; width: inherit;" i18n="common.acl.GetEffectivePermissions_User"></span>
+                <att-info-tip info-text="common.acl.GetEffectivePermissions_Tooltip"></att-info-tip>
+            </div>
+            <div class="row" style="margin-top: 6px;">
+                <att-text-input input-type="text" class="col-md-12" ng-model="vm.userToCheck" ng-change="userToCheckChanged()" ng-keydown="effectivePermissionsOnKeyDown($event)"></att-text-input>
+            </div>
+            <div class="row">
+                <att-button button-class="modal-attBtn" style="float: right;" enter-close-modal="false" on-click="onGetEffectivePermissions()" ng-disabled="isGetEffectivePermissionsDisabled()" label="common.acl.GetEffectivePermissions_Text"></att-button>
+            </div>
+            <div id="effectivePermissionsResult" class="row">
+                <textarea rows="6" ng-model="vm.effectivePermissionsResult" readonly></textarea>
+                <att-loader ng-if="GetEffectedStarted" class="connectedLoader" loader-type="ball-clip-rotate-multiple" loaderText=""></att-loader>
+            </div>
+        </div>
+    </div>
+</script>

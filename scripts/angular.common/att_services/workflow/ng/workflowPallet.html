@@ -1,0 +1,12 @@
+\<div class="row WorkflowPallet">
+    <div class="row Executors">
+        <div class="row">
+            <h4>Existing Tasks:</h4>
+        </div>
+        <div class="row Container">
+            <span ng-repeat="exec in ::vm.executors" ng-click="vm.selected = exec" ng-class="{selected:vm.selected.etl_id == exec.etl_id}">
+                    {{exec.ui_prop_task_name}}
+            </span>
+        </div>
+    </div>
+</div>

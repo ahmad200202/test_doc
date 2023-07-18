@@ -1,0 +1,27 @@
+<div style="width: 40%;height:100%;float: left;overflow-y: auto;border: 1px solid lightgrey ;">
+   <ul style="height: 100%;" >
+       <li ng-repeat="grp in ExpressionGroups[selectionData.selected_group_index].group_items"
+           ng-click="selectionData.selected_operator_index = 0; selectionData.selected_operator_category = $index;"
+           ng-class="{'selected': selectionData.selected_operator_category == $index }"
+           style="padding: 5px;cursor: pointer;"
+           class="ellipsisStyle liItem" title="{{grp.name}}" >
+           {{grp.name}}
+       </li>
+   </ul>
+</div>
+<div style="width: 60%;height:100%;float: right;overflow-y: auto; border: 1px solid lightgrey ;border-left: none;">
+    <ul style="height: 100%;" >
+        <li ng-repeat="item in ExpressionGroups[selectionData.selected_group_index].group_items[selectionData.selected_operator_category].items"
+            ng-init="isOverRow = -1" ng-mouseover="isOverRow = 1" ng-mouseleave="isOverRow = -1"
+            ng-click="selectionData.selected_operator_index = $index;"
+            ng-dblclick="onAddListItem(item);"
+            ng-class="{'selected': selectionData.selected_operator_index == $index }"
+            style="padding: 5px;cursor: pointer;" class="ellipsisStyle liItem" title="{{item.description}}">
+            <div>
+                <label class="tableItem" title="{{item.name}}">{{item.name}}</label>
+                <span class="listBtnAddToRight" style="position: inherit" ng-click="onAddListItem(item);" ng-show="true"  ></span>
+            </div>
+        </li>
+    </ul>
+
+</div>

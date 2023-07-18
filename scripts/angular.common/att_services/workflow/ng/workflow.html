@@ -1,0 +1,23 @@
+<div ng-controller="WorkFlowCtrl" style="width:100%;height: 100%">
+    <div id="graphContainerActionBar">
+        <div style="float:right;margin-right: 15px;">
+            <span att-custom-tooltip custom-tooltip-text="Zoom Out" ng-click="vm.appInterface.onZoom(false)" style="float: left;padding-top: 7px;" class="bootstrapGlyphicon  glyphicon-minus"></span>
+            <div ui-slider="vm.appInterface.slider.slider_data.options" use-decimals="true"  style="width: 150px;margin-top: 10px;margin-left: 12px; float: left;"
+                 ng-model="vm.appInterface.slider.slider_data.slider_val"
+                 min="{{vm.appInterface.minZoomVal}}"
+                 max="{{vm.appInterface.maxZoomVal}}"
+                 step="{{vm.appInterface.slider.sliderStep}}">
+            </div>
+            <span att-custom-tooltip custom-tooltip-text="Zoom In" ng-click="vm.appInterface.onZoom(true)" style="float: left;padding-top: 7px;margin-left: 9px;" class="bootstrapGlyphicon  glyphicon-plus"></span>
+            <span att-custom-tooltip custom-tooltip-text="Reset"   ng-click="vm.appInterface.onResetZoomPan()" style="float: left; width:30px;margin-left: 10px;border-left: 1px dotted gray;padding-left: 3px;" class="att-glyph icon-gl-RestoreZoom"></span>
+        </div>
+    </div>
+    <workflow id="graphWrapper" data="vm.work_flow_data"
+                      monitoring-data="vm.workflowMonitoringData"
+                      is-monitoring="vm.isMonitoring"
+                      on-node-dbl-click="onNodeDblClick(nodeName)"
+                      available-executors="vm.availableExecutors"
+                      svg-defs-path="views/directives/workflow/composeWorkflowDefs.html"
+                      app-interface="vm.appInterface" node-shape="vm.getExecutorTypeUIType" node-display-name="vm.getExecutorNodeDisplayName" node-has-error-port="vm.getExecutorNodeHasErrorPort">
+    </workflow>
+</div>
