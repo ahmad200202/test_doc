@@ -1,0 +1,43 @@
+{
+  "_args": [
+    [
+      "angular-ui-slider@0.4.0",
+      "e:\\jenkins_slave\\workspace\\QlikCompose-2022.5.0-Win-x64\\compose\\ComposeFDW\\ui\\documentation\\app"
+    ]
+  ],
+  "_from": "angular-ui-slider@0.4.0",
+  "_id": "angular-ui-slider@0.4.0",
+  "_inBundle": false,
+  "_integrity": "sha1-12wKVGSNDRjVnIfmyDOPrnQTXHU=",
+  "_location": "/angular-ui-slider",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "angular-ui-slider@0.4.0",
+    "name": "angular-ui-slider",
+    "escapedName": "angular-ui-slider",
+    "rawSpec": "0.4.0",
+    "saveSpec": null,
+    "fetchSpec": "0.4.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular-ui-slider/-/angular-ui-slider-0.4.0.tgz",
+  "_spec": "0.4.0",
+  "_where": "e:\\jenkins_slave\\workspace\\QlikCompose-2022.5.0-Win-x64\\compose\\ComposeFDW\\ui\\documentation\\app",
+  "author": {
+    "name": "https://github.com/angular-ui/ui-slider/graphs/contributors"
+  },
+  "description": "This directive allows you to add a slider to your form elements.",
+  "homepage": "http://angular-ui.github.com",
+  "ignore": [
+    "demo*",
+    "bower.json"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "angular-ui-slider",
+  "version": "0.4.0"
+}
