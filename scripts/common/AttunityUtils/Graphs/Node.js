@@ -1,0 +1,1 @@
+!function(global){"use strict";function Node(data,shape,id){this.data=data,this.shape=global.AttuGraph.shapes.rectangle,this.id=id}function Edge(data,shape,source_id,target_id){this.data=data,this.shape=shape,this.id=source_id+"_"+target_id}global.AttuGraph.Node=Node,global.AttuGraph.Edge=Edge}(this);

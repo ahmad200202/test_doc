@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Graph Library Demo</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="d3.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="dagre.js"></script>
+    <script type="text/javascript" src="../../Array.js"></script>
+    <script type="text/javascript" src="../Graph.js"></script>
+    <script type="text/javascript" src="../GraphUtils.js"></script>
+    <script type="text/javascript" src="../Layout.js"></script>
+    <script type="text/javascript" src="../Node.js"></script>
+    <script type="text/javascript" src="../Shape.js"></script>
+    <style type="text/css">
+        .edge{
+            fill:transparent;
+            stroke: rgb(155, 155, 155);
+            stroke-width: 1px;
+        }
+        .edge.selected{
+            stroke: orange;
+        }
+        .node rect,.node circle{
+            stroke:blue;
+            fill:white
+        }
+        .externalDrag{
+            height: 40px;
+            width:  40px;
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--<div> <button class="addNode">Add Node</button>-->
+<button class="applyLayout">Apply layout</button></div>
+<!--<div style=" width: 100px; height: 150px; border: 1px dashed #000000;">-->
+<!--<div class="externalDrag" style="border: 1px solid #0000ff" type="hub"><span>hub</span></div>-->
+<!--<div class="externalDrag" style="border: 1px solid lightslategray" type="center"><span>center</span></div>-->
+<!--</div>-->
+<div class="row graphSelectors">
+
+</div>
+<div class="target" style="width: 100%;height: 1000px;margin: 0 auto;"></div>
+
+</body>
+</html>
