@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #58595b;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <title>results_excluded</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="AEM">
+      <g id="results_excluded">
+        <circle class="cls-1" cx="9" cy="9" r="9"/>
+        <circle class="cls-2" cx="9" cy="8.8" r="5"/>
+        <line class="cls-2" x1="12" y1="5.8" x2="5.5" y2="12.3"/>
+      </g>
+    </g>
+  </g>
+</svg>

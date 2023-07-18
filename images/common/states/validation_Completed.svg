@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18 18">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #12a01f;
+      }
+
+      .cls-3 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+    <symbol id="validation_Completed" data-name="validation_Completed" viewBox="0 0 18 18">
+      <rect class="cls-1" x="3" y="3" width="12" height="12"/>
+      <g id="up">
+        <path class="cls-2" d="M18,9A9,9,0,1,1,9,0,9,9,0,0,1,18,9Z"/>
+      </g>
+      <g id="_" data-name="=">
+        <line class="cls-3" x1="4" y1="11" x2="14" y2="11"/>
+        <line class="cls-3" x1="4" y1="7" x2="14" y2="7"/>
+      </g>
+    </symbol>
+  </defs>
+  <title>validation_Completed</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="AEM">
+      <use id="validation_Completed-3" data-name="validation_Completed" width="18" height="18" xlink:href="#validation_Completed"/>
+    </g>
+  </g>
+</svg>

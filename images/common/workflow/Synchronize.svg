@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="40" width="40">
+  <defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  <linearGradient id="linearGradientGateway" gradientUnits="userSpaceOnUse"  x1="-4.997158e-004" y1="15.0816" x2="-4.997149e-004" y2="-5.0586">
+            <stop  offset="0" style="stop-color:#E6E6E6"/>
+            <stop  offset="1" style="stop-color:#FFFFFF"/>
+        </linearGradient>
+        </defs>
+	<g>
+
+    <g class="outerShape" viewBox="-19 -18.7 38 37.3" width="38" height="37.3"  x="-19" y="-18.7" transform="matrix(1 0 0 -1 20 20)" overflow="visible">
+                <path class="NodeProgressContainer"  d="M17.6,1.4c0.8-0.8,0.8-2.1,0-2.8L1.4-17.6c-0.8-0.8-2.1-0.8-2.8,0L-17.6-1.4 c-0.8,0.8-0.8,2.1,0,2.8l16.2,16.2c0.8,0.8,2.1,0.8,2.8,0L17.6,1.4z"/>
+                <path class="outerShapePath" fill="url(#linearGradientGateway)" d="M17.6,1.4c0.8-0.8,0.8-2.1,0-2.8L1.4-17.6c-0.8-0.8-2.1-0.8-2.8,0 L-17.6-1.4c-0.8,0.8-0.8,2.1,0,2.8l16.2,16.2c0.8,0.8,2.1,0.8,2.8,0L17.6,1.4z"/>
+            </g>
+            <g class="innerShape" viewBox="-9 -9 17 18" width="17" height="18" x="-9" y="-9" transform="matrix(1 0 0 -1 18 20)" overflow="visible">
+                <polyline points="7,-8 2,-8 2,8 7,8" style="fill:none; stroke:#58595B; stroke-width:2; stroke-linecap:round; stroke-miterlimit:10;"/>
+                <line x1="2" y1="0" x2="7" y2="0" style="fill:none; stroke:#58595B; stroke-width:2; stroke-linecap:round; stroke-miterlimit:10;"/>
+                <line x1="-2" y1="0" x2="-8" y2="0" style="fill:none; stroke:#58595B; stroke-width:2; stroke-linecap:round; stroke-miterlimit:10;"/>
+                <polygon points="-3,-3.6 -3,3.6 0.6,0"  style="fill:#58595B;"/>
+            </g>
+    </g>
+</svg>
