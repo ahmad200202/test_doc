@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+<defs>
+<style>.a{fill:#424344;}.b{fill:#ffffff;}</style>
+</defs>
+<title>more info</title>
+<circle class="a" cx="9" cy="9" r="9"/>
+<path class="b" d="M29.84,151.33c0-.44.14-0.81,1-0.81s1,0.37,1,.81v4.86c0,0.44-.14.81-1,0.81s-1-.37-1-0.81v-4.86Z" transform="translate(-21.84 -143.33)"/><path class="b" d="M28.91,157c-0.44,0-.81-0.14-0.81-1s0.37-1,.81-1h3.86c0.44,0,.81.14,0.81,1s-0.37,1-.81,1H28.91Z" transform="translate(-21.84 -143.33)"/><path class="b" d="M28.91,152.52c-0.44,0-.81-0.14-0.81-1s0.37-1,.81-1H31c0.44,0,.81.14,0.81,1s-0.37,1-.81,1H28.91Z" transform="translate(-21.84 -143.33)"/><path class="b" d="M29.84,148.33c0-.44.14-0.81,1-0.81s1,0.37,1,.81v0.86c0,0.44-.14.81-1,0.81s-1-.37-1-0.81v-0.86Z" transform="translate(-21.84 -143.33)"/>
+</svg>

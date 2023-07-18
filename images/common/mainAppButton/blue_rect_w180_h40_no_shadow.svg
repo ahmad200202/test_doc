@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 180 40"
+   enable-background="new 0 0 180 40"
+   width="180px"
+   height="40px"
+   xml:space="preserve">
+
+    <defs
+   id="defs8" />
+
+<g
+   id="XMLID_1_"
+   transform="matrix(1.2755659,0,0,0.96575002,-11.86824,-8.9550488)">
+
+	<g
+   id="XMLID_17_">
+		<path
+   id="XMLID_25_"
+   d="m 150,47 c 0,1.7 -1.4,3 -3,3 H 13 c -1.6,0 -3,-1.3 -3,-3 V 13 c 0,-1.6 1.4,-3 3,-3 h 134 c 1.6,0 3,1.4 3,3 v 34 z"
+
+   style="fill:#35b5e4" />
+	</g>
+</g>
+</svg>

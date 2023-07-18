@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+<defs>
+<style>.a{fill:#E8E8E8;}.b{fill:none;stroke:#424344;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style>
+</defs>
+<title>alert</title>
+<path class="a" d="M29.59,161.57a8,8,0,1,1,5.66-2.34A7.95,7.95,0,0,1,29.59,161.57Z" transform="translate(-20.59 -144.57)"/><path class="a" d="M29.59,146.57a7,7,0,1,1-4.95,2.05,7,7,0,0,1,4.95-2.05m0-2A9,9,0,1,0,36,147.2a9,9,0,0,0-6.36-2.64h0Z" transform="translate(-20.59 -144.57)"/><line class="b" x1="5.97" y1="5.99" x2="12.41" y2="12.43"/><line class="b" x1="5.97" y1="12.43" x2="12.41" y2="5.99"/></svg>
