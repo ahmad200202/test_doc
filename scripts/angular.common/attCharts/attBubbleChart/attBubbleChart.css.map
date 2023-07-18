@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,wBAAyB;EACvB,OAAO,EAAE,KAAK;EAEd,KAAK,EAAE,OAAO;EACd,WAAW,EAAE,kBAAkB;EAC/B,WAAW,EAAE,UAAU;EACvB,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,MAAM;EAQhB,kDAAK;IACH,WAAW,EAAE,MAAM;EAGrB,qDAAQ;IACN,QAAQ,EAAE,MAAM",
-"sources": ["attBubbleChart.scss"],
-"names": [],
-"file": "attBubbleChart.css"
-}
