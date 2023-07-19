@@ -1,0 +1,1 @@
+define(function(){"use strict";return function(obj){return null!=obj&&obj===obj.window}});

@@ -1,0 +1,1 @@
+define(function(){"use strict";return function(n,elem){for(var matched=[];n;n=n.nextSibling)1===n.nodeType&&n!==elem&&matched.push(n);return matched}});
