@@ -1,0 +1,1 @@
+angular.module("ui.bootstrap.debounce",[]).factory("$$debounce",["$timeout",function($timeout){return function(callback,debounceTime){var timeoutPromise;return function(){var self=this,args=Array.prototype.slice.call(arguments);timeoutPromise&&$timeout.cancel(timeoutPromise),timeoutPromise=$timeout(function(){callback.apply(self,args)},debounceTime)}}}]);
