@@ -1,0 +1,800 @@
+<!--<!DOCTYPE html>-->
+<!--[if lt IE 7]>
+<html lang="en" ng-app="product" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="product" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="product" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="composeDocumentationApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Project Documentation</title>
+    <link REL="SHORTCUT ICON" HREF="favicon.ico" type="image/x-icon"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="node_modules/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-ui-tree/dist/angular-ui-tree.css">
+
+    <!--XTRACE_GRAPH-->
+    <link href="scripts/angular.common/plugins/xtrace_graph/css/xtrace.css" rel="stylesheet" type="text/css">
+    <link href="scripts/angular.common/plugins/xtrace_graph/css/tipsy.css" rel="stylesheet" type="text/css"/>
+    <link href="scripts/angular.common/plugins/xtrace_graph/css/jquery.contextMenu.css" rel="stylesheet" type="text/css"/>
+    <!--XTRACE_GRAPH-->
+
+    <!--Add local & common CSS files-->
+<!--    <link rel="stylesheet" href="bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.css"/>-->
+
+    <!--SYNTAX HIGHLIGHT-->
+    <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="node_modules/codemirror/addon/hint/show-hint.css" />
+    <!--SYNTAX HIGHLIGHT-->
+    <link rel="stylesheet" href="styles/app.css" type="text/css"/>
+    <!--DO NOT add Style files after app.css! only before! -->
+</head>  <body ng-controller="documentationAppCtrl">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/jquery-ui/ui/jquery-1-7.js"></script>
+        <script src="node_modules/jquery-ui/ui/widget.js"></script>
+        <script src="node_modules/jquery-ui/ui/widgets/mouse.js"></script>
+        <script src="node_modules/jquery-ui/ui/widgets/slider.js"></script>
+        <script src="scripts/angular.common/a_node_modules/amplify/lib/amplify.js"></script>
+        <script src="node_modules/underscore/underscore-min.js"></script>
+        <script src="node_modules/angular/angular.js"></script>
+        <script src="node_modules/angular-route/angular-route.min.js"></script>
+        <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+        <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+        <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+        <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+        <script src="node_modules/angular-cookies/angular-cookies.min.js"></script>
+        <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="scripts/angular.common/a_node_modules/angular-localization/angular-localization.js"></script>
+        <script src="node_modules/ng-infinite-scroll/build/ng-infinite-scroll.min.js"></script>
+        <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="scripts/angular.common/a_node_modules/d3/d3.js"></script>
+        <script src="node_modules/angular-breadcrumb/dist/angular-breadcrumb.js"></script>
+        <script src="node_modules/angular-ui-tree/dist/angular-ui-tree.js"></script>
+
+        <!--SYNTAX HIGHLIGHT-->
+        <script src="node_modules/angular-ui-codemirror/src/ui-codemirror.js"></script>
+        <script src="node_modules/codemirror/lib/codemirror.js"></script>
+        <script src="node_modules/codemirror/mode/sql/sql.js"></script>
+        <script src="node_modules/codemirror/addon/hint/show-hint.js"></script>
+        <script src="node_modules/codemirror/addon/hint/sql-hint.js"></script>
+        <script src="node_modules/codemirror/addon/hint/anyword-hint.js"></script>
+        <!--SYNTAX HIGHLIGHT-->
+
+        <!-- bower component and plugins  -->
+
+        <!-- angular.common source code  -->
+
+        <script src="scripts/gen/GenDataObjects.js"></script>
+        <script src="scripts/common/AttunityUtils/Array.js"></script>
+        <script src="scripts/common/AttunityUtils/Object.js"></script>
+        <script src="scripts/angular.common/utils.js"></script>
+        <script src="scripts/angular.common/commonConstants.js"></script>
+        <script src="scripts/angular.common/utilsService.js"></script>
+        <script src="scripts/angular.common/wizard/wizardDirectives.js"></script>
+        <script src="scripts/angular.common/attModal/attModal.js"></script>
+        <script src="scripts/angular.common/attGlobalMessages/attGlobalMessages.js"></script>
+        <script src="scripts/angular.common/attGrid/attGridV3_5.js"></script>
+        <script src="scripts/angular.common/keyEvents.js"></script>
+        <script src="node_modules/angular-ui-slider/src/slider.js"></script>
+        <script src="scripts/angular.common/attLicense/license.js"></script>
+        <script src="scripts/angular.common/attLoggersConfig/loggersConfig.js"></script>
+        <script src="scripts/angular.common/attTextViewer/textViewer.js"></script>
+        <script src="scripts/angular.common/attListContent/listContent.js"></script>
+        <script src="scripts/angular.common/attTabSwapper/attTabSwapper.js"></script>
+        <script src="scripts/angular.common/attLoader/attLoader.js"></script>
+        <script src="scripts/angular.common/FormValidation.js"></script>
+        <script src="scripts/angular.common/attFloatingWindow/attFloatingWindow.js"></script>
+        <script src="scripts/angular.common/attCommonDirectives.js"></script>
+
+        <script src="scripts/angular.common/attCommonFilters.js"></script>
+        <script src="scripts/angular.common/attCommonServices.js"></script>
+        <!-- angular.common source code  -->
+
+
+        <script src="shared/composeConsts.js"></script>
+        <!-- Application  javascript files-->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/router.js"></script>
+        <script src="scripts/controllers/documentationAppCtrl.js"></script>
+        <script src="scripts/controllers/documentationTreeController.js"></script>
+        <script src="scripts/controllers/documentationDisplayController.js"></script>
+        <script src="scripts/services/documentationServices.js"></script>
+        <script src="shared/composeFilters.js"></script>
+        <script src="Repository.js" ></script>
+
+
+        <script src="scripts/common/AttunityUtils/Graphs/Graph.js"></script>
+        <script src="scripts/common/AttunityUtils/Graphs/GraphUtils.js"></script>
+        <script src="scripts/common/AttunityUtils/Graphs/Layout.js"></script>
+        <script src="scripts/common/AttunityUtils/Graphs/Node.js"></script>
+        <script src="scripts/common/AttunityUtils/Graphs/Shape.js"></script>
+
+
+        <script src="scripts/angular.common/plugins/xtrace_graph/jQuery/jquery.tipsy.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/jQuery/jquery.contextMenu.js"></script>
+
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/Minimap.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/MinimapZoom.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/DirectedAcyclicGraph.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/List.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/Selectable.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/Graph.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/History.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/Tooltip.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/ContextMenu.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/xtrace_utils.js"></script>
+        <script src="scripts/angular.common/plugins/xtrace_graph/src/xtrace_graph.js"></script>
+
+
+        <script src="shared/dagre-d3.js"></script>
+        <script src="shared/diagrams/att_display_model/att_display_model.js"></script>
+        <script src="shared/diagrams/att_lineage/lineageShapes.js"></script>
+        <script src="shared/diagrams/att_star_schema/starSchemaShapes.js"></script>
+        <script src="shared/diagrams/att_lineage/att_lineage.js"></script>
+        <script src="shared/diagrams/att_star_schema/att_star_schema.js"></script>
+        <script src="shared/composeUtils.js"></script>
+
+
+      
+        <!--MODEL-->
+        <script id="partials/entitiesListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.Entities_Text}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                    <input type="text" ng-model="search_props.search"/>
+                </div>
+                <div class="listGrid"
+                     att-grid
+                     filter="search_props.search"
+                     data="data.entities"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}" model-prop="name">
+                        <span title="{{rowData.name}}">{{rowData.name}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}" model-prop="description">
+                      <span title="{{rowData.description}}" ng-if="!parentCtrl.printMode">{{rowData.description}}</span>
+                      <span ng-if="parentCtrl.printMode" class="H100W100" style="float: left;white-space: normal;max-width:450px ">{{rowData.display_description}}</span>
+                    </column>
+                  <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.SaveHistory_Text}}" model-prop="save_history">
+                    <img ng-if="rowData.save_history" style="height: 18px;width: 18px;" height="18px" width="18px" src="shared/images/checkbox_on.svg"/>
+                  </column>
+                  <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.UsePreCurseRows_Text}}" model-prop="use_precurse_rows">
+                    <img ng-if="rowData.use_precurse_rows" style="height: 18px;width: 18px;" height="18px" width="18px" src="shared/images/checkbox_on.svg"/>
+                  </column>
+                  <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.UseBackdating_Text}}" model-prop="use_backdating">
+                    <img ng-if="rowData.use_backdating" style="height: 18px;width: 18px;" height="18px" width="18px" src="shared/images/checkbox_on.svg"/>
+                  </column>
+
+                </div>
+            </div>
+        </script>
+        <script id="partials/attributesDomainListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.Attributes_Domain_Text}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div class="listGrid">
+                    <div att-grid
+                         style="position: initial;"
+                         data="data.attributes"
+                         filter="search_props.search"
+                         fixed-header="true"
+                         static-mode="{{printMode}}">
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"                     model-prop="domain_attribute.name"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"              model-prop="domain_attribute.description">
+                            <span title="{{rowData.domain_attribute.description}}" ng-if="!parentCtrl.printMode">{{rowData.domain_attribute.description}}</span>
+                            <span ng-if="parentCtrl.printMode" class="H100W100" style="float: left;white-space: normal;max-width:450px ">{{rowData.domain_attribute.display_description}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Used_In_These_Entities_Text}}"   model-prop="used_in_entities">
+                            <span title="{{::rowData.used_in_entities.join('\n')}}">{{::rowData.used_in_entities.join(', ')}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Type_Text}}"                     model-prop="domain_attribute.ui_prop_data_type_obj.display_name" css-class="mediumCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Length_Text}}"                   model-prop="domain_attribute.length" css-class="mediumCol">
+                            <span ng-if="rowData.domain_attribute.type == parentCtrl.COMPOSE_CONSTS.Decimal_type.type || rowData.domain_attribute.type == parentCtrl.COMPOSE_CONSTS.Varchar_type.type || rowData.domain_attribute.type == parentCtrl.COMPOSE_CONSTS.Byte_type.type">{{rowData.domain_attribute.length}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Scale_Text}}"                    model-prop="domain_attribute.scale" css-class="mediumCol">
+                            <span ng-if="rowData.domain_attribute.type == parentCtrl.COMPOSE_CONSTS.Decimal_type.type">{{rowData.domain_attribute.scale}}</span>
+                        </column>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script id="partials/transformationsView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.Reusable_Transformations_Text}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div class="listGrid">
+                    <div att-grid
+                         style="position: initial;"
+                         data="data.transformations"
+                         filter="search_props.search"
+                         fixed-header="true"
+                         use-virtual-scroll="false"
+                         items-per-page="200"
+                         static-mode="{{printMode}}">
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"                      model-prop="transformation.name"                  css-class="medPlusCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Category_Text}}"                  model-prop="transformation.category"              css-class="medPlusCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Expression_Text}}"                model-prop="transformation.expression_statement"  css-class="extraLargeCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Transformation_Usage_Text}}"      model-prop="transformation.usage_list_display"  css-class="extraLargeCol">
+                            <div class="H100W100 ellipsisStyle" ng-repeat="item in rowData.usage_list_display" title="{{item}}">
+                                {{item}}
+                            </div>
+                        </column>
+                    </div>
+                </div>
+            </div>
+            </script>
+        <script id="partials/attributesListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{data.current_item_name ? data.current_item_name : ''}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     data="data.current_model_entity_attributes.table_columns_ext"
+                     order-predicate="'-is_primary'"
+                     filter="search_props.search"
+                     fixed-header="true"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Key_Text}}"              model-prop="is_primary" css-class="smallCol">
+                      <img src="shared/images/primary_key.png" height="17px" width="17px" style="width: 17px; height: 17px;" ng-if="rowData.is_primary">
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"             model-prop="display_name">
+					<span>
+					<mark style="background-color: transparent;color: orange; padding:0">{{rowData.prefix}}</mark>{{rowData.display_name}}
+					</span>
+					</column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Attribute_Domain_RelatedEntity_Text}}" model-prop="attribute_name"         css-class="largeCol2">
+                      <span>{{rowData.is_fk && rowData.entity != null ? rowData.entity.name : rowData.domainAttribute ?  rowData.domainAttribute.name : ''}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"      model-prop="description">
+                      <span title="{{rowData.description}}" ng-if="!parentCtrl.printMode">{{rowData.description}}</span>
+                      <span ng-if="parentCtrl.printMode" class="H100W100" style="float: left;white-space: normal;max-width:450px ">{{rowData.display_description}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Prefix_Text_Text}}"      model-prop="prefix"></column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Data_Type_Text}}"        model-prop="display_type" css-class="largeCol">
+                      <span ng-class="{'oColor' : rowData.is_fk}">{{rowData.display_type}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.History_Text}}"          model-prop="display_history_type" css-class="mediumCol"></column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Satellite_Text}}"        model-prop="block" css-class="mediumCol"><span title="{{rowData.block}}">{{rowData.block == 0 ? 'Hub' : rowData.block }}</span></column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Expression_Text}}"       model-prop="expression.expression_statement"></column>
+                </div>
+            </div>
+        </script>
+        <script id="partials/lineageView.html" type="text/ng-template">
+            <att-lineage id="lineage" data="data.current_model_entity_lineage" on-click="onLineageNodeClick(node)" options="data.current_model_entity_lineage.options"></att-lineage>
+        </script>
+        <script id="views/common/diagramTemplate.html" type="text/ng-template">
+            <div id="graphContainer" style="height:100%;width:100%;border: 1px dotted silver;overflow: hidden;">
+                <div id="graphContainerActionBar">
+                    <div style="float:left;">
+                        <div class="checkboxWrapInDiagram">
+                        <span class="labelForControlGroup"
+                              i18n="mapping.Show_Text"
+                              ng-if="options.allow_keys_display || options.allow_fk_display || options.allow_show_attributes_panel || options.allow_tooltips">
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <div id="graphWrapper">
+                    <div class="attributePanel" ng-if="options.show_attributes && options.allow_show_attributes_panel">
+                        <div style="height: 30px;">
+                            <div style="width: 100%;height: 10px;">
+                                <span style="float: right;cursor: pointer;" class="glyphicons glyphicons-remove-2"
+                                      ng-click="options.show_attributes = false;"></span>
+                            </div>
+                            <span ng-if="selected_node == null" style="font-size: 15px;float: left;margin: 0% 10% 10% 1%;"
+                                  class="infoSpan" i18n="project.No_Entity_Chosen_Text"></span>
+                            <label style="font-weight: bold;margin-left: 10px;">{{selected_node.id}}</label>
+                        </div>
+                        <div style="height: 86%;overflow: auto;">
+                            <ul class="H100W100">
+                                <li ng-repeat="attr in selected_node.report.attributes"
+                                    style="width: 100%;float: left;padding-left: 20px;">
+                                    <div style="float: left;width: 100%;">
+                                        <span class="ellipsisStyle" att-custom-tooltip custom-tooltip-text="{{attr.name != '' ? 'Physical Name: ' + attr.name : '' }}"><span style="font-weight: bold;">{{attr.type == '' ? 'FK' : ' '}} </span> {{attr.name}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <script id="partials/relationsView.html" type="text/ng-template">
+           <div class="H100W100" style="float: left;">
+                <att-display-model style="float: left; width: 100%;height: 100%;" data="data.model_erd_data.nodes" options="data.model_erd_data.options" api="data.model_erd_data.api"></att-display-model>
+           </div>
+        </script>
+        <!--MODEL-->
+
+        <!--ETL-->
+        <script id="partials/etlNameDescriptionListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.ETL_Sets_List_Text}} </label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     filter="search_props.search"
+                     data="data.etl_sets_list"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"  model-prop="name">
+                        <span title="{{rowData.name}}">{{rowData.name}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"  model-prop="object.description">
+                        <span title="{{rowData.object.description}}" ng-if="!parentCtrl.printMode">{{rowData.object.description}}</span>
+                        <span ng-if="parentCtrl.printMode" class="H100W100" style="float: left;white-space: normal;max-width:450px ">{{rowData.object.display_description}}</span>
+                    </column>
+                </div>
+            </div>
+        </script>
+        <script id="partials/etlItemActiveMappingsList.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>Active Mappings</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     filter="search_props.search"
+                     class="listGrid"
+                     data="data.etl_set_item_active_mappings_list"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}" model-prop="name">
+                        <span title="{{rowData.name}}">{{rowData.name}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Handle_Duplicates_Text}}" model-prop="is_handle_dup_active" css-class="largeCol">
+                        <img ng-if="rowData.is_handle_dup_active" style="height: 18px;width: 18px;" height="18px" width="18px" src="shared/images/checkbox_on.svg"/>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Mappings_Text}}"          model-prop="entity_mappings">
+                        <div ng-repeat="map in rowData.entity_mappings"  class="H100W100" >
+                            <span>{{map.name}}</span>
+                        </div>
+                    </column>
+                 </div>
+            </div>
+        </script>
+        <script id="partials/etlEntityMappingItemView.html" type="text/ng-template">
+            <div class="H100W100" style="height: auto;float: left;">
+                <div class="mappingInfo">
+                    <div class="row">
+                        <strong>{{data.current_mapping_item.name}}</strong>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <label class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Landing_Area_Database_Text}}</label>
+                        <label class="rightLabel">{{data.current_mapping_item.databaseObj.name }}</label>
+                    </div>
+                    <div ng-if="data.current_mapping_item.mappingObj.schema != 'NA' && data.current_mapping_item.mappingObj.mapping_type != DO.MappingType.QUERY" class="row" style="margin-top: 10px;">
+                        <label class="leftLabel" >{{COMPOSE_CONSTS.DocumentationTexts.Schema_Text}}:</label>
+                        <label class="rightLabel">{{data.current_mapping_item.mappingObj.schema}}</label>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <label class="leftLabel" >{{COMPOSE_CONSTS.DocumentationTexts.Source_Text}}</label>
+                        <label class="rightLabel" ng-if="data.current_mapping_item.mappingObj.mapping_type != DO.MappingType.QUERY">({{data.current_mapping_item.mappingObj.mapping_type}}) {{data.current_mapping_item.mappingObj.table_name}} </label>
+                        <div class="rightLabel queryLabel"  ng-if="data.current_mapping_item.mappingObj.mapping_type == DO.MappingType.QUERY">
+                            <label style="float: left;">({{data.current_mapping_item.mappingObj.mapping_type}})</label>
+                            <label style="float: left;">({{data.current_mapping_item.mappingObj.mapping_query}})</label>
+                        </div>
+                    </div>
+                    <div class="row"  style="margin-top: 10px;">
+                        <label class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Filter_Text}}:</label>
+                        <label class="rightLabel" ng-if="data.current_mapping_item.mappingObj.filter.expression_statement != ''" title="data.current_mapping_item.mappingObj.filter.expression_statement">{{data.current_mapping_item.mappingObj.filter.expression_statement}}</label>
+                        <label class="rightLabel" ng-if="data.current_mapping_item.mappingObj.filter.expression_statement == null">No Filter</label>
+                    </div>
+                </div>
+                <div class="mappingTableWrap">
+                    <div class="columnsMappingsWrap listWithLabelAndSearch">
+                        <div class="header">
+                            <label style="margin-top: 10px;"><Strong>{{COMPOSE_CONSTS.DocumentationTexts.Mappings_Text}}:</Strong></label>
+                            <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.filter_mapping_fields" auto-complete-array="[]"></att-search>
+                        </div>
+                        <div att-grid
+                             class="listGrid"
+                             data="data.current_mapping_item.mappingObj.mapping_fields"
+                             filter="search_props.filter_mapping_fields"
+                             enable-sorting="false"
+                             order-predicate="'undefined'"
+                             enable-sorting="false"
+                             fixed-header="true"
+                             static-mode="{{printMode}}">
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Landing_Area_Mapping_Columns_Text}}" model-prop="ui_prop_source_col_display_name"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Staging_Area_Columns_Text}}"         model-prop="staging_col_name_int"></column>
+                        </div>
+                    </div>
+                    <div class="columnsMappingsWrap listWithLabelAndSearch">
+                        <div class="header">
+                            <label style="margin-top: 10px;"><Strong>{{COMPOSE_CONSTS.DocumentationTexts.Data_Cleansing_Rules_Text}}:</Strong></label>
+                            <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.filter_data_cleansing_rules" auto-complete-array="[]"></att-search>
+                        </div>
+                        <div att-grid
+                             class="listGrid"
+                             data="data.current_mapping_item.mappingObj.cleansing_rules"
+                             filter="search_props.filter_data_cleansing_rules"
+                             enable-sorting="false"
+                             order-predicate="'undefined'"
+                             enable-sorting="false"
+                             static-mode="{{printMode}}">
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"                    model-prop="name"                                 css-class="largeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Column_Text}}"                  model-prop="attribute_name"                       css-class="largeCol" ></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Condition_Text}}"               model-prop="rule.expression_statement"            css-class="largeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Condition_False_Text}}"         model-prop="ui_prop_action_display_name"          css-class="largeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Correction_Text}}"              model-prop="fix_expression.expression_statement"  css-class="largeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"             model-prop="description"                          css-class="extraLargeCol">
+                                <span title="{{rowData.description}}" ng-if="!parentCtrl.printMode">{{rowData.description}}</span>
+                                <span ng-if="parentCtrl.printMode" class="H100W100" style="float: left;white-space: normal;max-width:450px ">{{rowData.display_description}}</span>
+                            </column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Enabled_Text}}"                 model-prop="enabled"                              css-class="mediumCol">
+                                <img ng-if="rowData.enabled" style="height: 18px;width: 18px;" height="18px" width="18px" src='shared/images/checkbox_on.svg'/>
+                                <img ng-if="!rowData.enabled" style="height: 18px;width: 18px;" height="18px" width="18px" src='shared/images/checkbox_off.svg'/>
+                            </column>
+                        </div>
+                    </div>
+                    <div class="columnsMappingsWrap listWithLabelAndSearch">
+                        <div class="header">
+                            <label style="margin-top: 10px;"><Strong>{{COMPOSE_CONSTS.DocumentationTexts.Data_Validation_Rules_Text}}:</Strong></label>
+                            <att-search ng-if="!printMode" ng-if="!printMode" style="float:right;" ng-model="search_props.filter_data_quality_rules" auto-complete-array="[]"></att-search>
+                        </div>
+                        <div att-grid
+                             class="listGrid"
+                             data="data.current_mapping_item.mappingObj.data_quality_rules"
+                             filter="search_props.filter_data_quality_rules"
+                             enable-sorting="false"
+                             order-predicate="'undefined'"
+                             enable-sorting="false"
+                             static-mode="{{printMode}}">
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"                   model-prop="name"                        css-class="largeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Condition_Text}}"              model-prop="rule.expression_statement"   css-class="extraLargeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Condition_False_Text}}"        model-prop="ui_prop_action_display_name" css-class="largeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"            model-prop="description"                 css-class="extraLargeCol"></column>
+                            <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Enabled_Text}}"                model-prop="enabled"                     css-class="mediumCol">
+                              <img ng-if="rowData.enabled"  style="height: 18px;width: 18px;" height="18px" width="18px" src='shared/images/checkbox_on.svg'/>
+                              <img ng-if="!rowData.enabled" style="height: 18px;width: 18px;" height="18px" width="18px" src='shared/images/checkbox_off.svg'/>
+                            </column>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script id="partials/customETLItemListView.html" type="text/ng-template">
+            <div att-grid
+                 data="data.etl_or_dm_custom_etls_list"
+                 static-mode="{{printMode}}">
+                <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.User_Defined_ETL_Text}}"        model-prop="name"></column>
+                <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"             model-prop="description"></column>
+            </div>
+        </script>
+        <script id="partials/singleTableCustomETLTableView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{data.current_item_name ? data.current_item_name : ''}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.filter_items" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     data="data.entities"
+                     order-predicate="'-is_primary'"
+                     filter="search_props.filter_items"
+                     fixed-header="true"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Entity_Text}}"             model-prop="name"></column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.User_Defined_ETL_Text}}"   model-prop="description">
+                        <div ng-repeat="custom_etl in rowData.custom_etls_for_type['PostStaging']">
+                            <span>{{custom_etl.name}}</span>
+                        </div>
+                    </column>
+                </div>
+            </div>
+        </script>
+        <script id="partials/customETLItemView.html" type="text/ng-template">
+            <div class="H100W100 customETLView">
+                <label class="description">{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}} : {{data.current_custom_etl_item.description ? data.current_custom_etl_item.description : COMPOSE_CONSTS.NA_TEXT}}</label>
+                <label class="footerLabel">{{COMPOSE_CONSTS.DocumentationTexts.Sequence_Number_Text}} : {{data.current_custom_etl_item.seq_nr}} </label>
+                <textarea class="customETLEditor" ui-codemirror ui-codemirror-opts="data.editorOptions" id="custom_etl_editor" ng-model="data.current_custom_etl_item.sql_statement"></textarea>
+            </div>
+        </script>
+
+        <script id="partials/etlMappingsListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.Mappings_Text}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     data="data.etl_item_mapping_list"
+                     filter="search_props.search"
+                     order-by="order"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}"         model-prop="name"></column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Mappings_Text}}"     model-prop="children">
+                        <div ng-repeat="mapping in rowData.children">
+                            <span title="{{mapping.name}}">{{mapping.name}}</span>
+                        </div>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Used_In_These_ETLS_Text}}" model-prop="used_in_etls"></column>
+                </div>
+            </div>
+        </script>
+        <script id="partials/etlEntityItemMappingListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{data.current_item_name ? data.current_item_name : ''}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     filter="search_props.search"
+                     data="data.etl_entity_item_mappings_list"
+                     order-by="order"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Mapping_Name_Text}}" model-prop="name"></column>
+                </div>
+            </div>
+
+        </script>
+        <!--ETL-->
+
+        <!--DATAMARTS-->
+        <script id="partials/dataMartNameDescriptionListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.DataMarts_Text}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     filter="search_props.search"
+                     data="data.data_marts_list"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}" model-prop="name">
+                        <span title="{{rowData.name}}">{{rowData.name}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}" model-prop="object.description">
+                        <span title="{{rowData.description}}">{{rowData.description}}</span>
+                    </column>
+                </div>
+            </div>
+        </script>
+        <script id="partials/factDimsListView.html" type="text/ng-template">
+            <div class="H100W100 listWithLabelAndSearch">
+                <div class="header">
+                    <label>{{COMPOSE_CONSTS.DocumentationTexts.Star_Schemas_Text}}</label>
+                    <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                </div>
+                <div att-grid
+                     class="listGrid"
+                     filter="search_props.search"
+                     data="data.facts_dims_list"
+                     static-mode="{{printMode}}">
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}" model-prop="name">
+                        <span title="{{rowData.name}}">{{rowData.name}}</span>
+                    </column>
+                    <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}" model-prop="object.description">
+                        <span title="{{rowData.object.description}}">{{rowData.object.description}}</span>
+                    </column>
+                  <column display-name="Reference dimension" model-prop="object.display_name">
+                    <span ng-if="rowData.parent_reference_dimension" title="{{rowData.display_name}}">{{rowData.display_name}}</span>
+                  </column>
+                </div>
+            </div>
+        </script>
+        <script id="partials/starSchemaItemView.html" type="text/ng-template">
+            <div class="starSchema">
+                <div class="dmDetails">
+                    <div class="row" style="height: 45px;">
+                        <strong style="font-size: 16px;">{{data.current_fact_dim_item.fact_dim.display_name}}</strong>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="leftLabel">{{data.current_fact_dim_item.fact_dim.type == DO.DmTableType.DIMENSION ? COMPOSE_CONSTS.DocumentationTexts.Dimension_Type_Text : COMPOSE_CONSTS.DocumentationTexts.Star_Schema_Type_Text}}</div>
+                        <div class="rightLabel">{{data.current_fact_dim_item.ui_prop_fact_dim_type.display_name}}</div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 5px;" ng-if="data.current_fact_dim_item.ui_prop_transaction_date">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Transaction_Date_Text}}</div>
+                        <div class="rightLabel">{{data.current_fact_dim_item.ui_prop_transaction_date}}</div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;" ng-if="!data.current_fact_dim_item.fact_dim.is_virtual">
+                        <div class="leftLabel">{{data.current_fact_dim_item.fact_dim.type == DO.DmTableType.DIMENSION ? COMPOSE_CONSTS.DocumentationTexts.Dimension_Table_Name_Text : COMPOSE_CONSTS.DocumentationTexts.Fact_Table_Name_Text}}</div>
+                        <div class="rightLabel">{{data.current_fact_dim_item.fact_dim.name}}</div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="leftLabel">{{data.current_fact_dim_item.fact_dim.type == DO.DmTableType.DIMENSION ? COMPOSE_CONSTS.DocumentationTexts.Dimension_View_Name_Text : COMPOSE_CONSTS.DocumentationTexts.Fact_View_Name_Text}}</div>
+
+                        <div ng-if="data.current_fact_dim_item.fact_dim.is_virtual" class="rightLabel">
+                            {{ data.current_fact_dim_item.fact_dim.view_name  ? data.current_fact_dim_item.fact_dim.view_name : COMPOSE_CONSTS.NA_TEXT}}
+                        </div>
+                        <div ng-if="!data.current_fact_dim_item.fact_dim.is_virtual" class="rightLabel">
+                            {{ data.current_fact_dim_item.fact_dim.view_name  ? data.current_fact_dim_item.fact_dim.view_name : COMPOSE_CONSTS.NA_TEXT}}
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}:</div>
+                        <div class="rightLabel" style="max-height: 85px;overflow: auto;">
+                            <span>{{data.current_fact_dim_item.fact_dim.description ? data.current_fact_dim_item.fact_dim.description : COMPOSE_CONSTS.NA_TEXT }}</span>
+                        </div>
+                    </div>
+                    <div ng-if="data.current_fact_dim_item.fact_dim.type != DO.DmTableType.DIMENSION" class="row" style="margin-top: 20px;margin-bottom: 5px;">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Dimensions_Text}}:</div>
+                        <div class="rightLabel" style="max-height: 85px;overflow: auto;">
+                            <label style="width: 100%;float: left;" ng-repeat="d in data.current_star_schema_display_data.data.nodes | filter : {type:'DIMENSION'}"> {{d.display_name}}</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Filter_Text}}:</div>
+                        <div class="rightLabel" style="height: 85px;overflow: auto;">
+                            <span>{{data.current_fact_dim_item.fact_dim.filter_expression.expression_statement ? data.current_fact_dim_item.fact_dim.filter_expression.expression_statement : COMPOSE_CONSTS.NA_TEXT}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dmDiagram" style="margin-bottom: 5px;">
+                    <div class="header">
+                        <label ng-if="data.current_fact_dim_item.fact_dim.type != null" style="width: 100%;font-weight: bold;">
+                            <span class="ellipsisStyle" style="font-weight: bold;max-width: 180px; display: inline-block; float: left;" att-custom-tooltip strict-text="{{data.current_fact_dim_item.fact_dim.display_name}}">{{data.current_fact_dim_item.fact_dim.display_name}}</span>
+                            <span style="float: left; display: inline-block;white-space: pre-wrap;"> - </span>
+                            <span style="float: left; display: inline-block;">{{(data.current_fact_dim_item.fact_dim.type == DO.DmTableType.DIMENSION) ? COMPOSE_CONSTS.DocumentationTexts.Dimension_DWH_Model_Text : COMPOSE_CONSTS.DocumentationTexts.Dimension_DM_Model_Text }}</span>
+                        </label>
+                    </div>
+                    <div class="diagram">
+                        <att-star-schema   ng-if="data.current_fact_dim_item.fact_dim.type != DO.DmTableType.DIMENSION"  data="data.current_star_schema_display_data.data" options="data.current_star_schema_display_data.actionBarOptions"></att-star-schema>
+                        <att-display-model ng-if="data.current_fact_dim_item.fact_dim.type == DO.DmTableType.DIMENSION"  data="data.current_dimension_display_data.nodes"        options="data.current_dimension_display_data.actionBarOptions"></att-display-model>
+                    </div>
+                </div>
+                <div render-if="data.current_fact_dim_item.fact_dim.is_aggregated_fact == false" class="dmAttributes listWithLabelAndSearch" >
+                    <div class="header">
+                        <label>{{COMPOSE_CONSTS.DocumentationTexts.Attributes_Text}}</label>
+                        <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search" auto-complete-array="[]"></att-search>
+                    </div>
+                    <div class="listGrid"
+                         att-grid
+                         order-predicate="'undefined'"
+                         enable-sorting="false"
+                         filter="search_props.search"
+                         data="data.current_fact_dim_item.fact_dim.fact_dim_columns"
+                         static-mode="{{printMode}}">
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Column_Text}}"           model-prop="attribute_name"         css-class="largeCol2"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Data_Type_Text}}"        model-prop="data_type"              css-class="medPlusCol">
+                            <span>{{rowData.data_type | columnTypeDisplayFilterByProps  : rowData.size : rowData.scale}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Expression_Text}}"       model-prop="expression.expression_statement"   css-class="largeCol2">
+                            <span class="ellipsisStyle" ng-class="{linkStyleColor : rowData.path != ''}" style="float: left;width: 100%;" title="{{rowData.expression.expression_statement}}">{{rowData.expression.expression_statement}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"       model-prop="description"            css-class="largeCol2"></column>
+                    </div>
+                </div>
+                <div render-if="data.current_fact_dim_item.fact_dim.is_aggregated_fact == true" class="dmAttributes listWithLabelAndSearch" >
+                    <div class="header">
+                        <label>{{COMPOSE_CONSTS.DocumentationTexts.Group_By_Text}}</label>
+                        <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search_gp" auto-complete-array="[]"></att-search>
+                    </div>
+                    <div att-grid
+                         class="listGrid"
+                         filter="search_props.search_gp"
+                         order-predicate="'undefined'"
+                         enable-sorting="false"
+                         data="data.current_fact_dim_item.group_by_cols"
+                         static-mode="{{printMode}}">
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Column_Text}}"           model-prop="attribute_name"         css-class="largeCol2"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Data_Type_Text}}"        model-prop="data_type"              css-class="medPlusCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Expression_Text}}"       model-prop="expression.expression_statement"   css-class="largeCol2">
+                            <span class="ellipsisStyle" ng-class="{linkStyleColor : rowData.path != ''}"   style="float: left;width: 100%;" title="{{rowData.expression.expression_statement}}">{{rowData.expression.expression_statement}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"       model-prop="description"            css-class="largeCol2"></column>
+                    </div>
+                </div>
+                <div render-if="data.current_fact_dim_item.fact_dim.is_aggregated_fact == true" class="dmAttributes listWithLabelAndSearch" >
+                    <div class="header">
+                        <label>{{COMPOSE_CONSTS.DocumentationTexts.Aggregations_Text}}</label>
+                        <att-search ng-if="!printMode" style="float:right;" ng-model="search_props.search_gp" auto-complete-array="[]"></att-search>
+                    </div>
+                    <div att-grid
+                         class="listGrid"
+                         filter="search_props.search_gp"
+                         order-predicate="'undefined'"
+                         enable-sorting="false"
+                         data="data.current_fact_dim_item.aggregations_cols"
+                         static-mode="{{printMode}}">
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Column_Text}}"           model-prop="attribute_name"         css-class="largeCol2"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Data_Type_Text}}"        model-prop="data_type"              css-class="medPlusCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Aggregation_Text}}"      model-prop="aggregate_function"     css-class="medPlusCol"></column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Expression_Text}}"       model-prop="expression.expression_statement"   css-class="largeCol2">
+                            <span class="ellipsisStyle" ng-class="{linkStyleColor : rowData.path != ''}"   style="float: left;width: 100%;" title="{{rowData.expression.expression_statement}}">{{rowData.expression.expression_statement}}</span>
+                        </column>
+                        <column display-name="{{COMPOSE_CONSTS.DocumentationTexts.Description_Text}}"       model-prop="description"            css-class="largeCol2"></column>
+                    </div>
+                </div>
+
+            </div>
+        </script>
+        <!--DATAMART-->
+
+        <!--APPENDIX-->
+        <script id="partials/dataBaseDetails.html" type="text/ng-template">
+            <div class="dataBaseDetails">
+                <div class="row">
+                    <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Name_Text}}</div>
+                    <div class="rightLabel">{{data.current_database_item.name}}</div>
+                </div>
+                <div ng-if="data.current_database_item.usage == DO.DatabaseUsage.SOURCE && data.current_database_item.original_sourcedb_id == 0">
+                    <div class="row" style="margin-bottom: 5px;margin-top: 10px;">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Landing_Area_Settings_Text}}:</div>
+                    </div>
+                    <div class="row">
+                        <div class="leftLabel" style="margin-top: 3px;">{{COMPOSE_CONSTS.DocumentationTexts.Content_Type_Text}}:</div>
+                        <div class="rightLabel">{{data.current_database_item.landing_zone.replicate_task_type}}</div>
+                    </div>
+                    <div class="row rowPadding" style="margin-top: 8px;">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Designated_By_Text}}:</div>
+                        <div class="rightLabel">{{data.current_database_item.landing_zone.landing_type}}</div>
+                    </div>
+                    <div class="row rowPadding" ng-if="data.current_database_item.landing_zone.landing_type == DO.LandingType.DATABASE && data.dwh.templateDatabaseType != DO.TemplateDatabaseType.ORACLE">
+                        <div class="leftLabel" ng-if="data.current_database_item.templateDatabaseType != DO.TemplateDatabaseType.ORACLE">{{COMPOSE_CONSTS.DocumentationTexts.Database_Name_Text}}:</div>
+                        <div class="leftLabel" ng-if="data.current_database_item.templateDatabaseType == DO.TemplateDatabaseType.ORACLE" >{{COMPOSE_CONSTS.DocumentationTexts.SID_Text}}:</div>
+                        <div class="rightLabel">{{data.current_database_item.landing_zone.db_name}}</div>
+                    </div>
+                    <div class="row rowPadding">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Schema_Name_Text}}:</div>
+                        <div class="rightLabel">{{data.current_database_item.landing_zone.schema_name}}</div>
+                    </div>
+                    <div class="row rowPadding">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Error_Mart_Schema_Name_Text}}:</div>
+                        <div class="rightLabel">{{data.current_database_item.landing_zone.error_marts_schema}}</div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 25px; margin-bottom: 15px;" ng-if="data.current_database_item.usage == DO.DatabaseUsage.SOURCE">
+                    <div class="leftLabel" ng-if="data.current_database_item.has_source_definition">{{COMPOSE_CONSTS.DocumentationTexts.Source_Database_Connection_Text}}:</div>
+                </div>
+                <div style="width: 100%;height: auto;float: left;" ng-class="{'rowPadding' : data.current_database_item.usage == DO.DatabaseUsage.SOURCE && data.current_database_item.has_source_definition == true}">
+                    <div class="row" ng-if="data.current_database_item.usage == DO.DatabaseUsage.SOURCE && data.current_database_item.has_source_definition == true || data.current_database_item.usage == DO.DatabaseUsage.DATA_WAREHOUSE">
+                        <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Type_Text}}:</div>
+                        <div class="rightLabel">{{data.current_database_item.display_name}}</div>
+                    </div>
+                    <div ng-if="data.current_database_item.dbms != '' && data.current_database_item.usage == DO.DatabaseUsage.SOURCE && data.current_database_item.has_source_definition == true || data.current_database_item.usage == DO.DatabaseUsage.DATA_WAREHOUSE && data.current_database_item.dbms != ''">
+                        <div class="row">
+                            <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Server_Name_Text}}:</div>
+                            <div class="rightLabel">{{data.current_database_item.server_name}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Port_Text}}:</div>
+                            <div class="rightLabel">{{data.current_database_item.port}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.User_Name_Text}}:</div>
+                            <div class="rightLabel">{{data.current_database_item.user_name}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="leftLabel" ng-if="data.current_database_item.templateDatabaseType != DO.TemplateDatabaseType.ORACLE">{{COMPOSE_CONSTS.DocumentationTexts.Database_Name_Text}}:</div>
+                            <div class="leftLabel" ng-if="data.current_database_item.templateDatabaseType == DO.TemplateDatabaseType.ORACLE">{{COMPOSE_CONSTS.DocumentationTexts.SID_Text}}:</div>
+                            <div class="rightLabel">{{data.current_database_item.database_name}}</div>
+                        </div>
+                        <div class="row" ng-if="data.current_database_item.templateDatabaseType != DO.TemplateDatabaseType.MYSQL">
+                            <div class="leftLabel" ng-if="data.current_database_item.usage == DO.DatabaseUsage.DATA_WAREHOUSE">{{COMPOSE_CONSTS.DocumentationTexts.Data_Warehouse_Schema_Text}}:</div>
+                            <div class="leftLabel" ng-if="data.current_database_item.usage != DO.DatabaseUsage.DATA_WAREHOUSE">{{COMPOSE_CONSTS.DocumentationTexts.Schema_Text}}:</div>
+                            <div class="rightLabel">{{data.current_database_item.included_schemas}}</div>
+                        </div>
+                        <div class="row" ng-if="data.current_database_item.templateDatabaseType != DO.TemplateDatabaseType.MYSQL && data.current_database_item.usage == DO.DatabaseUsage.DATA_WAREHOUSE">
+                            <div class="leftLabel">{{COMPOSE_CONSTS.DocumentationTexts.Data_Mart_Schema_Text}}:</div>
+                            <div class="rightLabel">{{data.current_database_item.dma_schema}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <!--APPENDIX-->
+
+
+    </body>
+
+</html>
