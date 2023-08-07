@@ -1,1 +1,0 @@
-define(["../../core"],function(jQuery){"use strict";return function(elem,dir,until){for(var matched=[],truncate=void 0!==until;(elem=elem[dir])&&9!==elem.nodeType;)if(1===elem.nodeType){if(truncate&&jQuery(elem).is(until))break;matched.push(elem)}return matched}});
