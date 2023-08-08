@@ -1,0 +1,1 @@
+exports.config={specs:["**/*.spec.coffee"],baseUrl:"http://localhost:8000/",allScriptsTimeout:3e4,getPageTimeout:3e4};
