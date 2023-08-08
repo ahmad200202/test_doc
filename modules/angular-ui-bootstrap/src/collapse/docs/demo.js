@@ -1,0 +1,1 @@
+angular.module("ui.bootstrap.demo").controller("CollapseDemoCtrl",function($scope){$scope.isNavCollapsed=!0,$scope.isCollapsed=!1,$scope.isCollapsedHorizontal=!1});
